@@ -5,23 +5,31 @@ actor "gestor de projeto" as gp
 actor "empregado" as e
 actor "admnistrador" as a
 rectangle SGP-WebService{
-usecase "consultar info projeto" as UC1
+usecase "consultar tempo estimado de projeto" as UC1
+usecase "consultar custo estimado de projeto" as UC10
 usecase "incluir tempos de tarefas" as UC2
-usecase "atribuir percentual de conclusao" as UC4
-usecase "adicionar tarefa" as UC5
+usecase "atribuir percentual de conclusao de tarefa" as UC4
+usecase "adicionar tarefa a projeto" as UC5
 usecase "adicionar projeto" as UC6
 usecase "adicionar cargos" as UC7
 usecase "adicionar valor/hora" as UC8
-usecase "adicionar empregado" as UC9
+usecase "adicionar empregado a tarefa" as UC9
+usecase "adicionar empregados" as E1
+usecase "adicionar gestor de projeto" as E2
+usecase "adicionar cliente" as E3
 }
 
 c --> UC1
+c --> UC10
 e --> UC2
 gp --> UC6
-UC6 --> UC5
+gp --> UC5
 a--> UC7
-UC5 --> UC4
-UC7 --> UC8
-UC5 --> UC9
+gp  --> UC4
+a --> UC8
+gp --> UC9
+a --> E1
+a --> E2
+a --> E3
 @enduml
 
