@@ -14,6 +14,7 @@ usecase "adicionar tarefa a projeto" as UC5
 usecase "criar projeto" as UC6
 usecase "adicionar cargos" as UC7
 usecase "adicionar valor/hora" as UC8
+usecase "criar tarefa" as UC12
 usecase "atribuir empregado a tarefa" as UC9
 usecase "adicionar empregados" as E1
 usecase "adicionar gestor de projeto" as E2
@@ -25,6 +26,7 @@ c --> UC10
 c --> UC11
 e --> UC2
 gp --> UC6
+gp --> UC12
 gp --> UC5
 a--> UC7
 gp  --> UC4
