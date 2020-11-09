@@ -1,0 +1,58 @@
+@startuml
+left to right direction
+
+class Projeto{
+	- nome:String
+	- estadoProjeto:Estados 
+	- calcularDuracao()
+	- calcularCusto()
+	- calcularEstado()
+}
+
+enum Estados{
+	ADIANTADO
+	ATRASADO
+	NORMAL
+}
+
+enum Cargos{
+	DevJunior
+	AnalistJunior
+	DevSenior
+	AnalistSenior
+}
+
+class Utilizador{
+    - nome:String
+}
+
+class Empregado{
+	- cargo:Cargos
+ 	- incluirTempoDedicadoMin(tempo: int)
+}
+
+class Cliente{
+	
+}
+
+class Tarefa{
+	- tempoEstimado:int 
+	- custoEstimado:double
+}
+
+class TarefaAtual{
+	- tempoDedicadoMin:int 
+	- progresso:double     
+	- ultimaAtualizacao:LocalDateTime
+}
+
+Empregado --|> Utilizador
+GestorProjeto --|> Utilizador
+Cliente --|> Utilizador
+Tarefa "1" --- "1" TarefaAtual
+Projeto "*" --- "1" GestorProjeto
+Projeto "*" -- "1" Cliente
+Tarefa "*" -- "1" Empregado
+Projeto "1"  *-- "*" Tarefa
+
+@enduml
