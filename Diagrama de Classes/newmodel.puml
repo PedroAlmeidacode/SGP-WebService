@@ -45,15 +45,16 @@ enum Cargos{
 	AnalistJunior
 	DevSenior
 	AnalistSenior
+	GestorP
 }
 
 Empregado --|> Utilizador
-GestorProjeto --|> Utilizador
 Cliente --|> Utilizador
 Tarefa "1" --- "1" TarefaAtual
 Projeto "*" --- "1" GestorProjeto
 Projeto "*" -- "1" Cliente
 Tarefa "*" -- "1" Empregado
 Projeto "1"  *-- "*" Tarefa
+GestorProjeto --|> Empregado
 
 @enduml
