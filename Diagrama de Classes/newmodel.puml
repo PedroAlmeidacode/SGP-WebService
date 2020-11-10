@@ -9,6 +9,31 @@ class Projeto{
 	- calcularEstado()
 }
 
+
+class Utilizador{
+    - nome:String
+}
+
+class Empregado{
+	- cargo:Cargos
+ 	- incluirTempoDedicadoMin(tempo: int)
+}
+
+class GestorProjeto{
+	 - atribuirPercentualConlusao(percentual: double)
+}
+
+class Tarefa{
+	- tempoEstimado:int 
+	- custoEstimado:double
+}
+
+class TarefaAtual{
+	- tempoDedicadoMin:int 
+	- percentualConclusao:double     
+	- ultimaAtualizacao:LocalDateTime
+}
+
 enum Estados{
 	ADIANTADO
 	ATRASADO
@@ -20,30 +45,6 @@ enum Cargos{
 	AnalistJunior
 	DevSenior
 	AnalistSenior
-}
-
-class Utilizador{
-    - nome:String
-}
-
-class Empregado{
-	- cargo:Cargos
- 	- incluirTempoDedicadoMin(tempo: int)
-}
-
-class Cliente{
-	
-}
-
-class Tarefa{
-	- tempoEstimado:int 
-	- custoEstimado:double
-}
-
-class TarefaAtual{
-	- tempoDedicadoMin:int 
-	- progresso:double     
-	- ultimaAtualizacao:LocalDateTime
 }
 
 Empregado --|> Utilizador
