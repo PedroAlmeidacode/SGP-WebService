@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+actor "cliente" as c
+actor "gestor de projeto" as gp
+actor "empregado" as e
+actor "admnistrador" as a
+rectangle SGP-WebService{
+usecase "consultar tempo estimado de tarefas" as UC1
+usecase "consultar custo estimado de tarefas" as UC10
+usecase "consultar estado geral do projeto" as UC11
+usecase "incluir tempos dedicados a tarefas" as UC2
+usecase "atribuir percentual de conclusao de tarefa" as UC4
+usecase "adicionar tarefa a projeto" as UC5
+usecase "criar projeto" as UC6
+usecase "adicionar cargos" as UC7
+usecase "adicionar valor/hora" as UC8
+usecase "criar tarefa" as UC12
+usecase "atribuir empregado a tarefa" as UC9
+usecase "adicionar empregados" as E1
+usecase "adicionar gestor de projeto" as E2
+usecase "adicionar cliente" as E3
+}
+
+c --> UC1
+c --> UC10
+c --> UC11
+e --> UC2
+gp --> UC6
+gp --> UC12
+gp --> UC5
+a--> UC7
+gp  --> UC4
+a --> UC8
+gp --> UC9
+a --> E1
+a --> E2
+a --> E3
+@enduml
