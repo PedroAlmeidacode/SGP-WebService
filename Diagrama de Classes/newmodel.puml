@@ -24,8 +24,8 @@ class GestorProjeto{
 }
 
 class Tarefa{
-	- tempoEstimado:int 
-	- custoEstimado:double
+	- tempoEstimado:int
+	- dataIniciacao:LocalDateTime 
 }
 
 class TarefaAtual{

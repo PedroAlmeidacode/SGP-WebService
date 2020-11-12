@@ -9,6 +9,7 @@ class Projeto{
 	- calcularEstado()
 }
 
+
 class Utilizador{
     - nome:String
 }
@@ -23,8 +24,8 @@ class GestorProjeto{
 }
 
 class Tarefa{
-	- tempoEstimado:int 
-	- custoEstimado:double
+	- tempoEstimado:int
+	- dataIniciacao:LocalDateTime 
 }
 
 class TarefaAtual{
