@@ -1,12 +1,13 @@
 package pt.ufp.info.esof.sgp.models;
 
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProjetoTest {
 
     @Test
     void testCalcularDuracao() {
+
         // serie de asserts de testar o calculo da duracao do projeto
     }
 
