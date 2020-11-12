@@ -12,7 +12,7 @@ public class Projeto {
     private Estado estadoProjeto;
     private Cliente cliente;
     private GestorDeProjeto gestorDeProjeto;
-    private List<Tarefa> tarefas= new ArrayList<>();
+    private List<Tarefa> tarefas = new ArrayList<>();
 
 
     private int calcularDuracao()

@@ -5,5 +5,5 @@ import java.util.List;
 
 public class Cliente extends Utilizador
 {
-    private List<Projeto> projetos=new ArrayList<>();
+    private List<Projeto> projetos = new ArrayList<>();
 }

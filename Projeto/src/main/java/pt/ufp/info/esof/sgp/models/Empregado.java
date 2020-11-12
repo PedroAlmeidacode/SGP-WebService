@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Empregado extends Utilizador {
 
-    private List<Tarefa> tarefas=new ArrayList<>();
+    private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
 
     private void incluirTempoDedicado(int tempo)
     {
-        //ir á tarefa buscar a tarefa atual e inserir tempo dedicado -->setTempodedicado
+        // ir à tarefa buscar a tarefa atual e inserir tempo dedicado --> setTempodedicado
     }
 
 }
