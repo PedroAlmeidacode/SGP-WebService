@@ -10,6 +10,7 @@ public class Empregado extends Utilizador {
     private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
 
+    // TODO apenas pode ser adicionado por empregados ?? ficar aqui ou em Tarefa ??
     private void incluirTempoDedicado(int tempo, Tarefa tarefa)
     {
         // se o empregado que esta a trabalhar na tarefa nao for o que esta a tentar
@@ -24,4 +25,7 @@ public class Empregado extends Utilizador {
 
     }
 
+    public Cargo getCargo() {
+        return cargo;
+    }
 }

@@ -7,6 +7,7 @@ public class GestorDeProjeto extends Utilizador{
 
     private List<Projeto> projetosGeridos = new ArrayList<>();
 
+    // TODO apenas pode ser adicionado por Gestor ?? ficar aqui ou em Tarefa ??
     private void atribuirPercentualDeConclusao(float percentual, Tarefa tarefa)
     {
         for (Projeto projeto:this.projetosGeridos) {

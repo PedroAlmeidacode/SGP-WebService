@@ -20,7 +20,7 @@ public class Projeto {
         int duracao = 0;
         for (Tarefa tarefa :this.tarefas) {
             // soma a duracao de todas as tarefas incluidas neste projeto
-            duracao += tarefa.getTempoEstimado();
+            duracao += tarefa.getDuracao();
         }
         return  duracao;
     }
@@ -28,11 +28,16 @@ public class Projeto {
     // calcula a soma do custo de todas tarefas incluidas neste projeto
     private double calcularCusto()
     {
-        return 0;
+        double custo = 0;
+        for (Tarefa tarefa:this.tarefas) {
+            custo += tarefa.getCustoTarefa();
+        }
+        return custo;
     }
 
     private Estado calcularEstado()
     {
+        // TODO calcular estado
         return null;
     }
 

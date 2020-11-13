@@ -3,7 +3,6 @@ left to right direction
 
 class Projeto{
 	- nome:String
-	- estadoProjeto:Estados 
 	- calcularDuracao()
 	- calcularCusto()
 	- calcularEstado()
@@ -25,7 +24,8 @@ class GestorProjeto{
 
 class Tarefa{
 	- tempoEstimado:int
-	- dataIniciacao:LocalDateTime 
+	- dataIniciacao:LocalDateTime
+	+ getCustoTarefa()
 }
 
 class TarefaAtual{

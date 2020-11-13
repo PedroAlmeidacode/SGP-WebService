@@ -2,12 +2,12 @@ package pt.ufp.info.esof.sgp.models;
 
 import java.time.LocalDateTime;
 
+// TODO atualizar UML
 public class Tarefa {
 
-    // o tempo estimado tem que ser atualizado se passar o prazo de conlusao
+    // a duracao tem que ser atualizado se passar o prazo de conlusao
     // nao pode permanecer o mesmo se o projeto estiver atrasado
-    private int tempoEstimado; // minutos estimados
-
+    private int duracao; // minutos estimados
 
 
     private LocalDateTime dataIniciacao; // data de construcao desta tarefa
@@ -28,8 +28,12 @@ public class Tarefa {
         return empregado;
     }
 
-    public int getTempoEstimado() {
-        return tempoEstimado;
+    public int getDuracao() {
+        return duracao;
     }
 
+    public double getCustoTarefa(){
+        // TODO get custo de cada tarefa , multiplicar duracao(min) por cargo.custos (ifs)
+        return 0;
+    }
 }
