@@ -16,7 +16,7 @@ public class Empregado extends Utilizador {
      * @param tempo dedicado pelo empregado para esta tarefa
      * @param tarefa em execucao pelo empregado
      */
-    private void incluirTempoDedicado(int tempo, Tarefa tarefa)
+    private void incluirTempoDedicado(Tarefa tarefa, int tempo)
     {
         // se o empregado que esta a trabalhar na tarefa nao for o que esta a tentar
         // incluir o tempo dedicado - ERRO

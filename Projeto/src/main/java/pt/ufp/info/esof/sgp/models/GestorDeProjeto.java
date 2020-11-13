@@ -13,7 +13,7 @@ public class GestorDeProjeto extends Utilizador{
      * @param percentual de conclusao desta tarefa, definido pelo gestor
      * @param tarefa gerida por este utilizador
      */
-    private void atribuirPercentualDeConclusao(float percentual, Tarefa tarefa)
+    private void atribuirPercentualDeConclusao(Tarefa tarefa,float percentual)
     {
         for (Projeto projeto:this.projetosGeridos) {
             // se as tarefas de todos os projetos geridos nao contiver a tarefa a atribuir

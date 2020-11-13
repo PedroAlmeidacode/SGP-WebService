@@ -7,14 +7,16 @@ import java.util.List;
 
 public class Projeto {
 
-
     private String nome;
     private Estado estadoProjeto;
     private Cliente cliente;
     private GestorDeProjeto gestorDeProjeto;
     private List<Tarefa> tarefas = new ArrayList<>();
 
-    // calcula a soma da duracao de todas tarefas incluidas neste projeto
+    /**
+     *
+     * @return a soma da duracao de todas tarefas incluidas neste projeto
+     */
     private int calcularDuracao()
     {
         int duracao = 0;
@@ -25,7 +27,10 @@ public class Projeto {
         return duracao;
     }
 
-    // calcula a soma do custo de todas tarefas incluidas neste projeto
+
+    /**
+     * @return a soma do custo de todas tarefas incluidas neste projeto
+     */
     private double calcularCusto()
     {
         double custo = 0;
@@ -36,6 +41,11 @@ public class Projeto {
         return custo;
     }
 
+
+    /**
+     * @return objeto estado , define estado do projeto como adiantado
+     * atrasado ou normal (enum estado)
+     */
     private Estado calcularEstado()
     {
         // TODO calcular estado
