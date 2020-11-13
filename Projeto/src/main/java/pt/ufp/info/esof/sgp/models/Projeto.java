@@ -14,19 +14,36 @@ public class Projeto {
     private GestorDeProjeto gestorDeProjeto;
     private List<Tarefa> tarefas = new ArrayList<>();
 
-
+    // calcula a soma da duracao de todas tarefas incluidas neste projeto
     private int calcularDuracao()
     {
-        return 0;
+        int duracao = 0;
+        for (Tarefa tarefa :this.tarefas) {
+            // soma a duracao de todas as tarefas incluidas neste projeto
+            duracao += tarefa.getTempoEstimado();
+        }
+        return  duracao;
     }
 
+    // calcula a soma do custo de todas tarefas incluidas neste projeto
     private double calcularCusto()
     {
-        return 0;
+        int custo = 0;
+        for (Tarefa tarefa :this.tarefas) {
+            // soma o custo de todas as tarefas incluidas neste projeto
+            custo += tarefa.getCustoEstimado();
+        }
+        return custo;
     }
 
     private Estado calcularEstado()
     {
+
+
         return null;
+    }
+
+    public List<Tarefa> getTarefas() {
+        return tarefas;
     }
 }
