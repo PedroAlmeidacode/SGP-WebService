@@ -1,10 +1,16 @@
 package pt.ufp.info.esof.sgp.models;
 
+import java.time.LocalDateTime;
+
 public class Tarefa {
 
+    // o tempo estimado tem que ser atualizado se passar o prazo de conlusao
+    // nao pode permanecer o mesmo se o projeto estiver atrasado
+    private int tempoEstimado; // minutos estimados
 
-    private int tempoEstimado; //minutos
-    private double custoEstimado; //eurinhos
+
+
+    private LocalDateTime dataIniciacao; // data de construcao desta tarefa
     private String titulo;
     private String descricao;
     private Empregado empregado;
@@ -26,7 +32,4 @@ public class Tarefa {
         return tempoEstimado;
     }
 
-    public double getCustoEstimado() {
-        return custoEstimado;
-    }
 }

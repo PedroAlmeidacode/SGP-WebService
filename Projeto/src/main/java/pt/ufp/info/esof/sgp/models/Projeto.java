@@ -28,18 +28,11 @@ public class Projeto {
     // calcula a soma do custo de todas tarefas incluidas neste projeto
     private double calcularCusto()
     {
-        int custo = 0;
-        for (Tarefa tarefa :this.tarefas) {
-            // soma o custo de todas as tarefas incluidas neste projeto
-            custo += tarefa.getCustoEstimado();
-        }
-        return custo;
+        return 0;
     }
 
     private Estado calcularEstado()
     {
-
-
         return null;
     }
 
