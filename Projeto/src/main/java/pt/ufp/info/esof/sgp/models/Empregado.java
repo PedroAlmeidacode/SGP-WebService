@@ -30,4 +30,8 @@ public class Empregado extends Utilizador {
     public Cargo getCargo() {
         return cargo;
     }
+
+    public List<Tarefa> getTarefas() {
+        return tarefas;
+    }
 }

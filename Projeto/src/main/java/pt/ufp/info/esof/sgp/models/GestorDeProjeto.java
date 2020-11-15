@@ -3,6 +3,7 @@ package pt.ufp.info.esof.sgp.models;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO fazer funcoes de adicionar tarefa , projeto e atrbui empregados a projeto...??
 public class GestorDeProjeto extends Utilizador{
 
     private List<Projeto> projetosGeridos = new ArrayList<>();
