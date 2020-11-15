@@ -8,12 +8,12 @@ class ProjetoTest {
     @Test
     void testCalcularDuracao() {
 
-        // serie de asserts de testar o calculo da duracao do projeto
+        // TODO serie de asserts de testar o calculo da tempo estimado do projeto
     }
 
     @Test
     void testCalcularCusto() {
-        // serie de asserts de testar o calculo do custo do projeto
+        // TODO serie de asserts de testar o valor estimado do projeto
     }
 
     @Test

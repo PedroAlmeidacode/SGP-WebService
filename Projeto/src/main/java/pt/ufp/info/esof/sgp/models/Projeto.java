@@ -20,6 +20,7 @@ public class Projeto {
     private int calcularDuracao()
     {
         int duracao = 0;
+        // soma de duracao de todas as tarefas
         for (Tarefa tarefa :this.tarefas) {
             // soma a duracao de todas as tarefas incluidas neste projeto
             duracao += tarefa.getDuracao();
@@ -34,6 +35,7 @@ public class Projeto {
     private double calcularCusto()
     {
         double custo = 0;
+        // soma do custo de todas as tarefas
         for (Tarefa tarefa:this.tarefas) {
             // soma o custo de todas as tarefas incluidas neste projeto
             custo += tarefa.getCustoTarefa();

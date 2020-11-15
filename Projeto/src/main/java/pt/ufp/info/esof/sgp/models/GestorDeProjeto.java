@@ -7,7 +7,6 @@ public class GestorDeProjeto extends Utilizador{
 
     private List<Projeto> projetosGeridos = new ArrayList<>();
 
-    // TODO apenas pode ser adicionado por Gestor ?? ficar aqui ou em Tarefa ??
     /**
      * atribui a tarefa um pecentual que define o progesso de execucao da mesma
      * @param percentual de conclusao desta tarefa, definido pelo gestor

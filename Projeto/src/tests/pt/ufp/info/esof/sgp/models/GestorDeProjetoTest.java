@@ -8,6 +8,6 @@ class GestorDeProjetoTest {
 
     @Test
     void testAtribuirPercentualDeConclusao() {
-        // serie de asserts que testam a funcao atribuirPercentualDeConclusao(float percentual)
+        // TODO serie de asserts que testam a funcao atribuirPercentualDeConclusao(float percentual)
     }
 }

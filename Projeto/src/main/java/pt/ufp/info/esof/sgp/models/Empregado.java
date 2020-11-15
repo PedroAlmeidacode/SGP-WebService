@@ -10,8 +10,6 @@ public class Empregado extends Utilizador {
     private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
 
-    // TODO apenas pode ser adicionado por empregados ?? ficar aqui ou em Tarefa ??
-
     /**
      * @param tempo dedicado pelo empregado para esta tarefa
      * @param tarefa em execucao pelo empregado
@@ -25,7 +23,7 @@ public class Empregado extends Utilizador {
             System.out.println(tarefa.getTitulo() + "nao é do empregado: "+ this.getNome());
             return;
         }
-        // ir à tarefa buscar a tarefa atual e inserir tempo dedicado --> setTempodedicado
+        // ir à tarefa buscar a tarefa atual e inserir tempo dedicado
         tarefa.getTarefaAtual().setTempoDedicado(tempo);
     }
 

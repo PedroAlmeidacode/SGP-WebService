@@ -1,13 +1,13 @@
 package pt.ufp.info.esof.sgp.models;
 
+import pt.ufp.info.esof.sgp.models.enums.Cargo;
+
 import java.time.LocalDateTime;
 
 // TODO atualizar UML
 public class Tarefa {
 
-    // a duracao tem que ser atualizado se passar o prazo de conlusao
-    // nao pode permanecer o mesmo se o projeto estiver atrasado
-    private int duracao; // minutos estimados
+    private int duracao; // minutos estimados, tem que ser expressa em minutos
 
     private LocalDateTime dataIniciacao; // data de construcao desta tarefa
     private String titulo;
@@ -34,11 +34,19 @@ public class Tarefa {
 
     /**
      * custo de tarefa dependente da duracao estipulada e do custo por hora do
-     * empregado atrbuido nela
+     * cargo do empregado atrbuido nela
      * @return custo de tarefa
      */
     public double getCustoTarefa(){
-        // TODO get custo de cada tarefa , multiplicar duracao(min) por cargo.custos (ifs)
+        // analista junior ganha 20 euros a hora = 20/60 = 0.3(3)euros ao minuto
+        if(this.empregado.getCargo().equals(Cargo.ANALISTA_JUNIOR)) return this.duracao * (20.00/60) ;
+        // analista junior ganha 80 euros a hora = 80/60 = 1.3(3)euros ao minuto
+        if(this.empregado.getCargo().equals(Cargo.ANLISTA_SENIOR)) return this.duracao * (80.00/60) ;
+        // desenvolvedor junior ganha 10 euros a hora = 10/60 = 0.16666667 euros ao minuto
+        if(this.empregado.getCargo().equals(Cargo.DES_JUNIOR)) return this.duracao * (10.00/60);
+        // desenvolvedor senior ganha 40 euros a hora = 40/60 = 0.66666667 euros ao minuto
+        if(this.empregado.getCargo().equals(Cargo.DES_SENIOR)) return this.duracao * (40.00/60) ;
+        System.out.println("ERRO: nao tem cargo atribuido");
         return 0;
     }
 }

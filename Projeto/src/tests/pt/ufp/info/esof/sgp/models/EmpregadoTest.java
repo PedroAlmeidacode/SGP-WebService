@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EmpregadoTest {
     @Test
     void testIncluirTempoDedicado() {
-        // serie de asserts que testam a funcao incluirTempoDedicado(int tempo)
+
+        // TODO serie de asserts que testam a funcao incluirTempoDedicado(int tempo)
     }
 }
