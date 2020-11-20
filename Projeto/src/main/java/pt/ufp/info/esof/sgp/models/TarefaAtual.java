@@ -1,7 +1,13 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+
+@Getter
+@Setter
 public class TarefaAtual {
 
     private Tarefa tarefa;
@@ -9,10 +15,17 @@ public class TarefaAtual {
     private float percentualConclusao; // de 0-100, definido por gestor de projeto
     private LocalDateTime ultimaAtualizacao; // definido em setPercentualConclusao
 
-    // set by empregado de tarefa
-    public void setTempoDedicado(int tempoDedicado) {
-        this.tempoDedicado = tempoDedicado;
+
+    /**
+     * Construtor de Tarefa atual
+     * @param tarefa original a que pertence
+     * @param ultimaAtualizacao refere a data da criacao da mesma
+     */
+    public TarefaAtual(Tarefa tarefa, LocalDateTime ultimaAtualizacao) {
+        this.tarefa = tarefa;
+        this.ultimaAtualizacao = ultimaAtualizacao;
     }
+
 
     /**
      * set by gestor de projeto de tarefa
@@ -25,4 +38,6 @@ public class TarefaAtual {
         // passa a ser a data atual
         this.ultimaAtualizacao = LocalDateTime.now();
     }
+
+
 }

@@ -1,10 +1,15 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Getter
+@Setter
 public class Projeto {
 
     private String nome;
@@ -13,17 +18,18 @@ public class Projeto {
     private GestorDeProjeto gestorDeProjeto;
     private List<Tarefa> tarefas = new ArrayList<>();
 
+
     /**
      *
      * @return a soma da duracao de todas tarefas incluidas neste projeto
      */
-    private int calcularDuracao()
+    protected int calcularDuracao()
     {
         int duracao = 0;
         // soma de duracao de todas as tarefas
         for (Tarefa tarefa :this.tarefas) {
             // soma a duracao de todas as tarefas incluidas neste projeto
-            duracao += tarefa.getDuracao();
+            duracao += tarefa.getDuracaoEstimada();
         }
         return duracao;
     }
@@ -32,7 +38,7 @@ public class Projeto {
     /**
      * @return a soma do custo de todas tarefas incluidas neste projeto
      */
-    private double calcularCusto()
+    protected double calcularCusto()
     {
         double custo = 0;
         // soma do custo de todas as tarefas
@@ -45,16 +51,27 @@ public class Projeto {
 
 
     /**
-     * @return objeto estado , define estado do projeto como adiantado
-     * atrasado ou normal (enum estado)
+     * Atrasada = 1
+     * Normal = 2
+     * Adiantada = 3
+     * Concluida = 4
+     * @return objeto estado , define estado do projeto
      */
     private Estado calcularEstado()
     {
-        // TODO calcular estado
+        int estadoPercentual = 0;
+        int numTarefas = this.tarefas.size();
+        for (Tarefa tarefa:this.tarefas) {
+            if(tarefa.getEstadoTarefa().equals(Estado.CONCLUIDA)) estadoPercentual += 4;
+            if(tarefa.getEstadoTarefa().equals(Estado.ADIANTADA)) estadoPercentual += 3;
+            if(tarefa.getEstadoTarefa().equals(Estado.NORMAL)) estadoPercentual += 2;
+            if(tarefa.getEstadoTarefa().equals(Estado.ATRASADA)) estadoPercentual += 1;
+        }
+
+
+        // TODO determinar o estado do projeto de acordo com estadoPercentual/numTarefas
+
         return null;
     }
 
-    public List<Tarefa> getTarefas() {
-        return tarefas;
-    }
 }

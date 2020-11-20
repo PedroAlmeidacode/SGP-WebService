@@ -8,6 +8,38 @@ class EmpregadoTest {
     @Test
     void testIncluirTempoDedicado() {
 
-        // TODO serie de asserts que testam a funcao incluirTempoDedicado(int tempo)
+        // teste caso primeira insercao de tempo na tarefa
+        Empregado empregado = new Empregado();
+        Tarefa tarefa = new Tarefa();
+        tarefa.atribuirEmpregadoaTarefa(empregado);
+
+        // 180 min = 3 horas
+        empregado.incluirTempoDedicado(tarefa,180);
+        assertEquals(180,tarefa.getTarefaAtual().getTempoDedicado());
+
+
+        // teste de segunda insercao de tempo
+        // trabalhou mais 3 horas
+        empregado.incluirTempoDedicado(tarefa,180);
+        assertEquals(360,tarefa.getTarefaAtual().getTempoDedicado());
+
+
+        // teste de tentar adicionar a uma tarefa que nao é dele
+        Tarefa tarefa2 = new Tarefa();
+        Empregado empregado2 = new Empregado();
+        tarefa2.atribuirEmpregadoaTarefa(empregado2);
+
+        // empregado nao esta na tarefa logo nao pode adicionar tempo nela
+        empregado.incluirTempoDedicado(tarefa,180);
+        // assert for "return;"
+
+
+        //
+
+
+
+
+
+        // TODO last assert
     }
 }
