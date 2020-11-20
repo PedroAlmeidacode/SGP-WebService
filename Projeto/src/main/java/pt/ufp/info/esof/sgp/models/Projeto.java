@@ -59,6 +59,8 @@ public class Projeto {
      */
     private Estado calcularEstado()
     {
+        // se nao houver nenhuma tarefa neste projeto
+        if (this.tarefas.isEmpty()) return Estado.SEM_TAREFAS_SUBMETIDAS;
         int estadoPercentual = 0;
         int numTarefas = this.tarefas.size();
         for (Tarefa tarefa:this.tarefas) {
@@ -67,11 +69,17 @@ public class Projeto {
             if(tarefa.getEstadoTarefa().equals(Estado.NORMAL)) estadoPercentual += 2;
             if(tarefa.getEstadoTarefa().equals(Estado.ATRASADA)) estadoPercentual += 1;
         }
-
-
-        // TODO determinar o estado do projeto de acordo com estadoPercentual/numTarefas
-
-        return null;
+        long mediaEstadoLong = estadoPercentual / (long) numTarefas;
+        // arredonda o estado de todos os proejtos para um estado mais geral
+        int mediaEstado = Math.round(mediaEstadoLong);
+        // estado do projeto
+        switch (mediaEstado){
+            case 1: return Estado.ATRASADA;
+            case 2: return Estado.NORMAL;
+            case 3: return Estado.ADIANTADA;
+            case 4: return Estado.CONCLUIDA;
+            // caso resulte em outro valor atribui se como 0
+            default: return Estado.NORMAL;
+        }
     }
-
 }

@@ -29,7 +29,7 @@ public class Tarefa {
      *
      * @return custo de tarefa
      */
-    public double getCustoTarefa() {
+    protected double getCustoTarefa() {
 
         switch (this.empregado.getCargo()){
             // analista junior ganha 20 euros a hora = 20/60 = 0.3(3)euros ao minuto
@@ -51,7 +51,7 @@ public class Tarefa {
      * atribui esta tarefa na lista de tarefas de empregado
      * @param empregado atrbuido a esta tarefa
      */
-    public void atribuirEmpregadoaTarefa(Empregado empregado) {
+    protected void atribuirEmpregadoaTarefa(Empregado empregado) {
         this.empregado = empregado;
         // inciacada a data de inciciacao da tarefa
         this.dataIniciacao = LocalDateTime.now();
@@ -63,25 +63,27 @@ public class Tarefa {
 
 
     /**
-     *
      * @return estado de tarefa
      */
-    public Estado getEstadoTarefa(){
-        int tempoDedicado = this.tarefaAtual.getTempoDedicado();
+    protected Estado getEstadoTarefa(){
+        int tempoDedicadoAtribuidoPeloEmpregado = this.tarefaAtual.getTempoDedicado();
         // da nos um valor de 0-100, da percenatgem de tempo estimado dado, usada
-        int percentagemTempoUsada = tempoDedicado * 100 / this.duracaoEstimada;
+        int percentagemTempoUsada = tempoDedicadoAtribuidoPeloEmpregado * 100 / this.duracaoEstimada;
         // percentual da tarefa feita pelo empregado, atribuida pelo gestor
-        float percentualConclusao = this.tarefaAtual.getPercentualConclusao();
+        float percentagemConclusao = this.tarefaAtual.getPercentualConclusao();
 
 
         // TODO incluir as datas de inciacao e as datas de atualizao nos calculos
         // se ja tiver feito a tarefa toda
-        if(percentualConclusao == 100) return Estado.CONCLUIDA;
+        if(percentagemConclusao == 100) return Estado.CONCLUIDA;
         // percentagem de tempo usada em relacao a percentagem feita
-        // se a perc de tempo usada < perc feita
-        if(percentagemTempoUsada < percentualConclusao) return Estado.ADIANTADA;
-        // perc tempo usada > = ao feito por diferenca de menos 10
-        if(percentagemTempoUsada >= percentualConclusao && (percentagemTempoUsada-percentualConclusao) < 10) return Estado.NORMAL;
+        // se a perc de tempo usada < perc concluida
+        // (fez muito em pouco tempo - adiantada )
+        if(percentagemTempoUsada < percentagemConclusao) return Estado.ADIANTADA;
+        // perc tempo usada >= ao cocnluido (por diferenca de menos de 10)
+        // (fez mais ao menos o equivalente ao tempo que usou)
+        if(percentagemTempoUsada >= percentagemConclusao && (percentagemTempoUsada-percentagemConclusao) <= 10) return Estado.NORMAL;
+        // perc tempo usada > ao concluido (usou muito tempo e fez pouco)
         else return Estado.ATRASADA;
     }
 

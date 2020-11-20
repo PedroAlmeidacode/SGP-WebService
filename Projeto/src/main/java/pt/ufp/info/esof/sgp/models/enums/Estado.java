@@ -4,5 +4,6 @@ public enum Estado {
     CONCLUIDA, // quando a tarefa tem 100 de percentualConclusao na tarefaAtual atribuido pelo Gestor
     ADIANTADA,
     ATRASADA,
-    NORMAL
+    NORMAL,
+    SEM_TAREFAS_SUBMETIDAS,
 }
