@@ -9,7 +9,6 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Cliente extends Utilizador
-{
+public class Cliente extends Utilizador {
     private List<Projeto> projetos = new ArrayList<>();
 }

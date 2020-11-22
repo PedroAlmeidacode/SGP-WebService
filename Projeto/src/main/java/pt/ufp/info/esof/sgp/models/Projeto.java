@@ -13,21 +13,18 @@ import java.util.List;
 public class Projeto {
 
     private String nome;
-    private Estado estadoProjeto;
     private Cliente cliente;
     private GestorDeProjeto gestorDeProjeto;
     private List<Tarefa> tarefas = new ArrayList<>();
 
 
     /**
-     *
      * @return a soma da duracao de todas tarefas incluidas neste projeto
      */
-    protected int calcularDuracao()
-    {
+    protected int calcularDuracao() {
         int duracao = 0;
         // soma de duracao de todas as tarefas
-        for (Tarefa tarefa :this.tarefas) {
+        for (Tarefa tarefa : this.tarefas) {
             // soma a duracao de todas as tarefas incluidas neste projeto
             duracao += tarefa.getDuracaoEstimada();
         }
@@ -38,11 +35,10 @@ public class Projeto {
     /**
      * @return a soma do custo de todas tarefas incluidas neste projeto
      */
-    protected double calcularCusto()
-    {
+    protected double calcularCusto() {
         double custo = 0;
         // soma do custo de todas as tarefas
-        for (Tarefa tarefa:this.tarefas) {
+        for (Tarefa tarefa : this.tarefas) {
             // soma o custo de todas as tarefas incluidas neste projeto
             custo += tarefa.getCustoTarefa();
         }
@@ -55,31 +51,36 @@ public class Projeto {
      * Normal = 2
      * Adiantada = 3
      * Concluida = 4
+     *
      * @return objeto estado , define estado do projeto
      */
-    private Estado calcularEstado()
-    {
+    protected Estado calcularEstado() {
         // se nao houver nenhuma tarefa neste projeto
         if (this.tarefas.isEmpty()) return Estado.SEM_TAREFAS_SUBMETIDAS;
         int estadoPercentual = 0;
         int numTarefas = this.tarefas.size();
-        for (Tarefa tarefa:this.tarefas) {
-            if(tarefa.getEstadoTarefa().equals(Estado.CONCLUIDA)) estadoPercentual += 4;
-            if(tarefa.getEstadoTarefa().equals(Estado.ADIANTADA)) estadoPercentual += 3;
-            if(tarefa.getEstadoTarefa().equals(Estado.NORMAL)) estadoPercentual += 2;
-            if(tarefa.getEstadoTarefa().equals(Estado.ATRASADA)) estadoPercentual += 1;
+        for (Tarefa tarefa : this.tarefas) {
+            if (tarefa.getEstadoTarefa().equals(Estado.CONCLUIDA)) estadoPercentual += 4;
+            if (tarefa.getEstadoTarefa().equals(Estado.ADIANTADA)) estadoPercentual += 3;
+            if (tarefa.getEstadoTarefa().equals(Estado.NORMAL) || tarefa.getEstadoTarefa().equals(Estado.TAREFA_NAO_ATRBUIDA))
+                estadoPercentual += 2;
+            if (tarefa.getEstadoTarefa().equals(Estado.ATRASADA)) estadoPercentual += 1;
         }
         long mediaEstadoLong = estadoPercentual / (long) numTarefas;
         // arredonda o estado de todos os proejtos para um estado mais geral
         int mediaEstado = Math.round(mediaEstadoLong);
         // estado do projeto
-        switch (mediaEstado){
-            case 1: return Estado.ATRASADA;
-            case 2: return Estado.NORMAL;
-            case 3: return Estado.ADIANTADA;
-            case 4: return Estado.CONCLUIDA;
-            // caso resulte em outro valor atribui se como 0
-            default: return Estado.NORMAL;
+        switch (mediaEstado) {
+            case 1:
+                return Estado.ATRASADA;
+            case 3:
+                return Estado.ADIANTADA;
+            case 4:
+                return Estado.CONCLUIDA;
+            // caso resulte em outro valor atribui se como
+            // caso seja 2 ->
+            default:
+                return Estado.NORMAL;
         }
     }
 }

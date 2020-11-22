@@ -21,7 +21,7 @@ class ProjetoTest {
         projeto.getTarefas().add(tarefa2);
         projeto.getTarefas().add(tarefa3);
 
-        assertEquals(projeto.calcularDuracao(),1800);
+        assertEquals(projeto.calcularDuracao(), 1800);
 
     }
 
@@ -50,7 +50,9 @@ class ProjetoTest {
         projeto.getTarefas().add(tarefa2);
         projeto.getTarefas().add(tarefa3);
 
-        assertEquals(projeto.calcularCusto(),860);
+        assertEquals(projeto.calcularCusto(), 860);
+
+        // TODO fazer mais testes de forma cobrir todas as linhas do metodo
     }
 
     @Test
@@ -111,11 +113,8 @@ class ProjetoTest {
         projeto.getTarefas().add(tarefa2);
         projeto.getTarefas().add(tarefa3);
 
-        assertEquals(Estado.NORMAL,projeto.getEstadoProjeto());
+        assertEquals(Estado.NORMAL, projeto.calcularEstado());
 
-        // TODO teste calcular estado deu erro null
-
-
-        // serie de asserts de testar o estado do projeto
+        // TODO teste calcular estado - fazer mais testes para cobir mais linhas do metodo
     }
 }

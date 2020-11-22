@@ -18,7 +18,8 @@ public class TarefaAtual {
 
     /**
      * Construtor de Tarefa atual
-     * @param tarefa original a que pertence
+     *
+     * @param tarefa            original a que pertence
      * @param ultimaAtualizacao refere a data da criacao da mesma
      */
     public TarefaAtual(Tarefa tarefa, LocalDateTime ultimaAtualizacao) {
@@ -29,6 +30,7 @@ public class TarefaAtual {
 
     /**
      * set by gestor de projeto de tarefa
+     *
      * @param percentualConclusao percentagem de cocnlusao definida pelo gestor
      *                            deste projeto
      */

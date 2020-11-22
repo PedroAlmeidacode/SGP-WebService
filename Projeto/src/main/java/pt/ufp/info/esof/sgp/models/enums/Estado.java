@@ -6,4 +6,5 @@ public enum Estado {
     ATRASADA,
     NORMAL,
     SEM_TAREFAS_SUBMETIDAS,
+    TAREFA_NAO_ATRBUIDA
 }

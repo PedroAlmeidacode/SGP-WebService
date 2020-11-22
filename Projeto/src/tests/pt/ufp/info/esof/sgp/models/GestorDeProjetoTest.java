@@ -2,9 +2,6 @@ package pt.ufp.info.esof.sgp.models;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class GestorDeProjetoTest {
@@ -27,9 +24,9 @@ class GestorDeProjetoTest {
         projeto.getTarefas().add(tarefa);
         gestorDeProjeto.getProjetosGeridos().add(projeto);
         //uso da funcao
-        gestorDeProjeto.atribuirPercentualDeConclusao(tarefa,20);
+        gestorDeProjeto.atribuirPercentualDeConclusao(tarefa, 20);
         // experada alteracao de percentual para 20
-        assertEquals(20,tarefa.getTarefaAtual().getPercentualConclusao());
+        assertEquals(20, tarefa.getTarefaAtual().getPercentualConclusao());
 
 
 
@@ -40,8 +37,8 @@ class GestorDeProjetoTest {
         /* caso ele nao tenha esse projeto */
         GestorDeProjeto gestorDeProjeto1 = new GestorDeProjeto();
         gestorDeProjeto1.setNome("Pedro Almeida");
-        gestorDeProjeto1.atribuirPercentualDeConclusao(tarefa,30);
-        assertEquals(20,tarefa.getTarefaAtual().getPercentualConclusao());
+        gestorDeProjeto1.atribuirPercentualDeConclusao(tarefa, 30);
+        assertEquals(20, tarefa.getTarefaAtual().getPercentualConclusao());
 
 
 
@@ -57,7 +54,7 @@ class GestorDeProjetoTest {
         tarefa1.atribuirEmpregadoaTarefa(empregado);
         //tarefa1.getTarefaAtual().setPercentualConclusao(0);
         // esta a tentar adicinar percentual a uma tarefa que nao tem
-        gestorDeProjeto.atribuirPercentualDeConclusao(tarefa1,100);
+        gestorDeProjeto.atribuirPercentualDeConclusao(tarefa1, 100);
         // fica igual a 0 pois nao foi alterada nem incializada com outro valor
         assertEquals(0, tarefa1.getTarefaAtual().getPercentualConclusao());
 
