@@ -23,6 +23,18 @@ class ProjetoTest {
 
         assertEquals(projeto.calcularDuracao(), 1800);
 
+
+
+        // porjeto sem duracoes estimadas estipuladas
+        Projeto projeto1 = new Projeto();
+        Tarefa tarefa4 = new Tarefa();
+        Tarefa tarefa5 = new Tarefa();
+        Tarefa tarefa6 = new Tarefa();
+        projeto1.getTarefas().add(tarefa4);
+        projeto1.getTarefas().add(tarefa5);
+        projeto1.getTarefas().add(tarefa6);
+        assertEquals(projeto1.calcularDuracao(), 0);
+
     }
 
     @Test
@@ -51,6 +63,27 @@ class ProjetoTest {
         projeto.getTarefas().add(tarefa3);
 
         assertEquals(projeto.calcularCusto(), 860);
+
+
+
+
+        // projeto sem tarefas deve retonrar 0 de custo
+        Projeto projeto1 = new Projeto();
+        assertEquals(projeto1.calcularCusto(), 0);
+
+
+
+        // proejto com duas tarefas de duracao estimada 0 deve retornar 0
+        Tarefa tarefa1 = new Tarefa();
+        Tarefa tarefa4 = new Tarefa();
+        // e obrigatorio atrbuir empregados a tarefa senao da erro
+        projeto1.getTarefas().add(tarefa1);
+        projeto1.getTarefas().add(tarefa4);
+        assertEquals(projeto1.calcularCusto(), 0);
+
+
+
+
 
         // TODO fazer mais testes de forma cobrir todas as linhas do metodo
     }

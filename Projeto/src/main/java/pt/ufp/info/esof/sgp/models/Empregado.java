@@ -15,19 +15,17 @@ public class Empregado extends Utilizador {
     private Cargo cargo;
 
     /**
+     * incluir tempod dedicado para alem do incluido anteriormente
      * @param tempo  dedicado pelo empregado para esta tarefa
      * @param tarefa em execucao pelo empregado
      */
     protected void incluirTempoDedicado(Tarefa tarefa, int tempo) {
-        // se o empregado que esta a trabalhar na tarefa nao for o que esta a tentar
-        // incluir o tempo dedicado - ERRO
-        if (!tarefa.getEmpregado().equals(this)) {
-            System.out.println("ERRO: Tarefa {"+ tarefa.getTitulo() + "} nao é do empregado " + this.getNome());
-            return;
+        // se o empregado que esta a trabalhar na tarefa for o que esta a tentar incluir
+        if (tarefa.getEmpregado().equals(this)) {
+            // ir à tarefa buscar a tarefa atual e buscar o tempo ja colocado
+            int tempoAtual = tarefa.getTarefaAtual().getTempoDedicado();
+            // adicionar mais o tempo
+            tarefa.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
         }
-        // ir à tarefa buscar a tarefa atual e buscar o tempo ja colocado
-        int tempoAtual = tarefa.getTarefaAtual().getTempoDedicado();
-        // adicionar mais o tempo
-        tarefa.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
     }
 }

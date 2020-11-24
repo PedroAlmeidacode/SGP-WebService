@@ -20,16 +20,9 @@ public class GestorDeProjeto extends Utilizador {
      * @param tarefa     gerida por este utilizador
      */
     protected void atribuirPercentualDeConclusao(Tarefa tarefa, float percentual) {
-
-        for (Projeto projeto : this.projetosGeridos) {
-            // se as tarefas de todos os projetos geridos nao contiver a tarefa a atribuir
-            if (projeto.getTarefas().contains(tarefa)) {
-                // atribui o percentual de conclusão a uma determinada tarefa
-                tarefa.getTarefaAtual().setPercentualConclusao(percentual);
-            }
-        }
-        // esta tarefa ta fora do scoop de tarefas geridas
-        System.out.println("ERRO:");
-        System.out.println(tarefa.getTitulo() + " nao é gerida pelo utilizador " + this.getNome());
+        // se as tarefas de todos os projetos geridos contiver a tarefa a atribuir
+        // atribui o percentual de conclusão a uma determinada tarefa
+        this.projetosGeridos.stream().filter(projeto -> projeto.getTarefas().contains(tarefa))
+                .forEach(projeto -> tarefa.getTarefaAtual().setPercentualConclusao(percentual));
     }
 }

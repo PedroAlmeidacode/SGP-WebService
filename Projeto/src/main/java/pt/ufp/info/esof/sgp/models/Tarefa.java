@@ -16,6 +16,7 @@ public class Tarefa {
 
     private int duracaoEstimada; // minutos estimados, tem que ser expressa em minutos
     // inicializada ao atribuir um empregado a tarefa
+    // TODO @JsonFormat(pattern = "yyyy-MM-dd HH:mm",shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataIniciacao;
     private String titulo;
     private String descricao;
@@ -30,7 +31,8 @@ public class Tarefa {
      * @return custo de tarefa
      */
     protected double getCustoTarefa() {
-
+        // se nao tiver empregado atribuido a tarefa
+        if (this.empregado == null) return 0;
         switch (this.empregado.getCargo()) {
             // analista junior ganha 20 euros a hora = 20/60 = 0.3(3)euros ao minuto
             case ANALISTA_JUNIOR:
