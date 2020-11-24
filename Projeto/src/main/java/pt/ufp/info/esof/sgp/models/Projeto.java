@@ -4,17 +4,26 @@ import lombok.Getter;
 import lombok.Setter;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Getter
 @Setter
+@Entity
 public class Projeto {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
+    @ManyToOne
     private Cliente cliente;
+    @ManyToOne
     private GestorDeProjeto gestorDeProjeto;
+    @OneToMany(mappedBy = "projeto",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
 

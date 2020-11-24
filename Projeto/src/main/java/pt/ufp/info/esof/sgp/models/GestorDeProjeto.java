@@ -3,14 +3,20 @@ package pt.ufp.info.esof.sgp.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Getter
 @Setter
+@Entity
 public class GestorDeProjeto extends Utilizador {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToMany(mappedBy = "GestorDeProjeto",cascade = CascadeType.ALL)
     private List<Projeto> projetosGeridos = new ArrayList<>();
 
     /**

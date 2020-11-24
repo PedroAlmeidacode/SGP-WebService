@@ -2,17 +2,22 @@ package pt.ufp.info.esof.sgp.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import pt.ufp.info.esof.sgp.models.enums.Cargo;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 // TODO atualizar UML
 // TODO atualizar SRS
 
+@Entity
 @Getter
 @Setter
 public class Tarefa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private int duracaoEstimada; // minutos estimados, tem que ser expressa em minutos
     // inicializada ao atribuir um empregado a tarefa
@@ -20,7 +25,9 @@ public class Tarefa {
     private LocalDateTime dataIniciacao;
     private String titulo;
     private String descricao;
+    @ManyToOne
     private Empregado empregado;
+    @OneToOne(cascade=CascadeType.ALL)
     private TarefaAtual tarefaAtual;
 
 
@@ -59,12 +66,14 @@ public class Tarefa {
      *
      * @param empregado atrbuido a esta tarefa
      */
-    protected void atribuirEmpregadoaTarefa(Empregado empregado) {
+    public void atribuirEmpregadoaTarefa(Empregado empregado) {
         this.empregado = empregado;
         // inciacada a data de inciciacao da tarefa
         this.dataIniciacao = LocalDateTime.now();
         // criada a tarefa atual
-        this.tarefaAtual = new TarefaAtual(this, LocalDateTime.now());
+        this.tarefaAtual = new TarefaAtual();
+        // colocar a ultima atualizacao como a data presente
+        this.tarefaAtual.setUltimaAtualizacao(LocalDateTime.now());
         // adiciona esta tarefa as tarefas de empregado
         empregado.getTarefas().add(this);
     }

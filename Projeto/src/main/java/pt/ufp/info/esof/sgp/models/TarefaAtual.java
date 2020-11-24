@@ -3,30 +3,22 @@ package pt.ufp.info.esof.sgp.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
 @Getter
 @Setter
+@Entity
 public class TarefaAtual {
 
-    private Tarefa tarefa;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private int tempoDedicado; // em minutos, colocado por empregado
     private float percentualConclusao; // de 0-100, definido por gestor de projeto
     private LocalDateTime ultimaAtualizacao; // definido em setPercentualConclusao
-
-
-    /**
-     * Construtor de Tarefa atual
-     *
-     * @param tarefa            original a que pertence
-     * @param ultimaAtualizacao refere a data da criacao da mesma
-     */
-    public TarefaAtual(Tarefa tarefa, LocalDateTime ultimaAtualizacao) {
-        this.tarefa = tarefa;
-        this.ultimaAtualizacao = ultimaAtualizacao;
-    }
-
 
     /**
      * set by gestor de projeto de tarefa
