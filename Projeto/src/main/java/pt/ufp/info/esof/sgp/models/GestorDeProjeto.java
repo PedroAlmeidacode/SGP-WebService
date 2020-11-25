@@ -16,7 +16,7 @@ public class GestorDeProjeto extends Utilizador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "GestorDeProjeto",cascade = CascadeType.ALL)
+    @OneToMany //(mappedBy = "GestorDeProjeto",cascade = CascadeType.ALL)
     private List<Projeto> projetosGeridos = new ArrayList<>();
 
     /**

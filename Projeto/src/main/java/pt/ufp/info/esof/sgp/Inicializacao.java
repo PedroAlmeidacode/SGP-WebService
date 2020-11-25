@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import pt.ufp.info.esof.sgp.models.Cliente;
-import pt.ufp.info.esof.sgp.models.Empregado;
-import pt.ufp.info.esof.sgp.models.Projeto;
-import pt.ufp.info.esof.sgp.models.Tarefa;
+import pt.ufp.info.esof.sgp.models.*;
 import pt.ufp.info.esof.sgp.repositories.*;
 
 @Component
@@ -36,9 +33,14 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
         Projeto projeto = new Projeto();
 
+        GestorDeProjeto gestorDeProjeto = new GestorDeProjeto();
+
         //TAREFA ESTADO NORMAL
         Tarefa tarefa = new Tarefa();
         Empregado empregado = new Empregado();
+
+        this.empregadoRepository.save(empregado);
+
         tarefa.atribuirEmpregadoaTarefa(empregado);
         // duaracao estimada = 1000 min
         tarefa.setDuracaoEstimada(1000);
@@ -89,11 +91,18 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
         projeto.getTarefas().add(tarefa2);
         projeto.getTarefas().add(tarefa3);
 
+        this.tarefaRepository.save(tarefa);
+        this.tarefaRepository.save(tarefa1);
+        this.tarefaRepository.save(tarefa2);
+        this.tarefaRepository.save(tarefa3);
 
         cliente.getProjetos().add(projeto);
+        gestorDeProjeto.getProjetosGeridos().add(projeto);
+        this.clienteRepository.save(cliente);
+        this.gestorDeProjetoRepository.save(gestorDeProjeto);
 
         this.projetoRepository.save(projeto);
-        this.empregadoRepository.save(empregado);
+
 
 
     }

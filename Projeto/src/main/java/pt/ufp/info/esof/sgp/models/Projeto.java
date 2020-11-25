@@ -23,7 +23,7 @@ public class Projeto {
     private Cliente cliente;
     @ManyToOne
     private GestorDeProjeto gestorDeProjeto;
-    @OneToMany(mappedBy = "projeto",cascade = CascadeType.ALL)
+    @OneToMany //(mappedBy = "projeto",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
 
