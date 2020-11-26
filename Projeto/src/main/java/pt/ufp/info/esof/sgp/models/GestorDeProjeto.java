@@ -16,7 +16,7 @@ public class GestorDeProjeto extends Utilizador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany //(mappedBy = "GestorDeProjeto",cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "gestorDeProjeto",cascade = CascadeType.ALL)
     private List<Projeto> projetosGeridos = new ArrayList<>();
 
     /**
@@ -31,4 +31,12 @@ public class GestorDeProjeto extends Utilizador {
         this.projetosGeridos.stream().filter(projeto -> projeto.getTarefas().contains(tarefa))
                 .forEach(projeto -> tarefa.getTarefaAtual().setPercentualConclusao(percentual));
     }
+
+
+    public void adicionaProjeto(Projeto projeto) {
+        this.projetosGeridos.add(projeto);
+        projeto.setGestorDeProjeto(this);
+    }
+
+
 }

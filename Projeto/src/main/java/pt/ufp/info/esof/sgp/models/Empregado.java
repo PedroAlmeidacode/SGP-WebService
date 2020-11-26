@@ -33,6 +33,7 @@ public class Empregado extends Utilizador {
             int tempoAtual = tarefa.getTarefaAtual().getTempoDedicado();
             // adicionar mais o tempo
             tarefa.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+            // TODO refactorizar set tempo dedicado
         }
     }
 }

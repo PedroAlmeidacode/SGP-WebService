@@ -97,9 +97,12 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
         this.tarefaRepository.save(tarefa3);
 
         cliente.getProjetos().add(projeto);
-        gestorDeProjeto.getProjetosGeridos().add(projeto);
+  //      gestorDeProjeto.getProjetosGeridos().add(projeto);
+
         this.clienteRepository.save(cliente);
-        this.gestorDeProjetoRepository.save(gestorDeProjeto);
+
+        gestorDeProjeto.adicionaProjeto(projeto);
+//        this.gestorDeProjetoRepository.save(gestorDeProjeto);
 
         this.projetoRepository.save(projeto);
 
