@@ -21,7 +21,9 @@ public class Cliente extends Utilizador {
 
 
     public void adicionaProjeto(Projeto projeto) {
-        this.projetos.add(projeto);
-        projeto.setCliente(this);
+        if(!this.projetos.contains(projeto)) {
+            this.projetos.add(projeto);
+            projeto.setCliente(this);
+        }
     }
 }

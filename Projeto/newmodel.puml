@@ -18,9 +18,6 @@ class Empregado{
  	- incluirTempoDedicadoMin(tempo: int)
 }
 
-class GestorProjeto{
-	 - atribuirPercentualConlusao(percentual: double)
-}
 
 class Tarefa{
 	- tempoEstimado:int
@@ -50,10 +47,8 @@ enum Cargos{
 Empregado --|> Utilizador
 Cliente --|> Utilizador
 Tarefa "1" --- "1" TarefaAtual
-Projeto "*" --- "1" GestorProjeto
 Projeto "*" -- "1" Cliente
 Tarefa "*" -- "1" Empregado
 Projeto "1"  *-- "*" Tarefa
-GestorProjeto --|> Utilizador
 
 @enduml

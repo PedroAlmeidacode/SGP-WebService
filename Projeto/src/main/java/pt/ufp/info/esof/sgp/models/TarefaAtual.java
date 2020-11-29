@@ -30,6 +30,11 @@ public class TarefaAtual {
         this.percentualConclusao = percentualConclusao;
         // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
         // passa a ser a data atual
+        setUltimaAtualizacaoParaAgora();
+    }
+
+
+    public void setUltimaAtualizacaoParaAgora(){
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
