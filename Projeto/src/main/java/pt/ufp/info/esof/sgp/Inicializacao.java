@@ -39,7 +39,6 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
         Tarefa tarefa = new Tarefa();
         Empregado empregado = new Empregado();
 
-        this.empregadoRepository.save(empregado);
 
         tarefa.atribuirEmpregadoaTarefa(empregado);
         // duaracao estimada = 1000 min
@@ -86,25 +85,17 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
 
         // adiconar 4 tarefas ao projeto
-        projeto.getTarefas().add(tarefa);
-        projeto.getTarefas().add(tarefa1);
-        projeto.getTarefas().add(tarefa2);
-        projeto.getTarefas().add(tarefa3);
-
-        this.tarefaRepository.save(tarefa);
-        this.tarefaRepository.save(tarefa1);
-        this.tarefaRepository.save(tarefa2);
-        this.tarefaRepository.save(tarefa3);
-
-        cliente.getProjetos().add(projeto);
-  //      gestorDeProjeto.getProjetosGeridos().add(projeto);
-
-        this.clienteRepository.save(cliente);
+        projeto.adicionarTarefa(tarefa);
+        projeto.adicionarTarefa(tarefa1);
+        projeto.adicionarTarefa(tarefa2);
+        projeto.adicionarTarefa(tarefa3);
 
         gestorDeProjeto.adicionaProjeto(projeto);
-//        this.gestorDeProjetoRepository.save(gestorDeProjeto);
 
-        this.projetoRepository.save(projeto);
+        cliente.adicionaProjeto(projeto);
+        this.clienteRepository.save(cliente);
+
+
 
 
 

@@ -17,7 +17,7 @@ public class Empregado extends Utilizador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "empregado",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empregado")
     private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
 
@@ -34,6 +34,14 @@ public class Empregado extends Utilizador {
             // adicionar mais o tempo
             tarefa.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
             // TODO refactorizar set tempo dedicado
+        }
+    }
+
+
+    public void adicionarTarefa(Tarefa tarefa){
+        if(!this.tarefas.contains(tarefa)){
+            tarefas.add(tarefa);
+            tarefa.setEmpregado(this);
         }
     }
 }

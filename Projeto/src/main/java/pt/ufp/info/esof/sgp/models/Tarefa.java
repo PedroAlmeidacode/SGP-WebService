@@ -26,6 +26,8 @@ public class Tarefa {
     private String titulo;
     private String descricao;
     @ManyToOne
+    private  Projeto projeto;
+    @ManyToOne(cascade = CascadeType.ALL)
     private Empregado empregado;
     @OneToOne(cascade=CascadeType.ALL)
     private TarefaAtual tarefaAtual;
@@ -67,7 +69,6 @@ public class Tarefa {
      * @param empregado atrbuido a esta tarefa
      */
     public void atribuirEmpregadoaTarefa(Empregado empregado) {
-        this.empregado = empregado;
         // inciacada a data de inciciacao da tarefa
         this.dataIniciacao = LocalDateTime.now();
         // criada a tarefa atual
@@ -75,7 +76,8 @@ public class Tarefa {
         // colocar a ultima atualizacao como a data presente
         this.tarefaAtual.setUltimaAtualizacao(LocalDateTime.now());
         // adiciona esta tarefa as tarefas de empregado
-        empregado.getTarefas().add(this);
+        // adiciona o empregado a esta tarefa
+        empregado.adicionarTarefa(this);
     }
 
 

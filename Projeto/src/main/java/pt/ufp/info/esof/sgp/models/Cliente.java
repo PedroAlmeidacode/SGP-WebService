@@ -18,4 +18,10 @@ public class Cliente extends Utilizador {
 
     @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
     private List<Projeto> projetos = new ArrayList<>();
+
+
+    public void adicionaProjeto(Projeto projeto) {
+        this.projetos.add(projeto);
+        projeto.setCliente(this);
+    }
 }

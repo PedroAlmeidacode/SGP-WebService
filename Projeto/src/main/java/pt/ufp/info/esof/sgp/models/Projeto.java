@@ -21,9 +21,12 @@ public class Projeto {
     private String nome;
     @ManyToOne
     private Cliente cliente;
-    @ManyToOne
+
+    // TODO gestor de projeto vai deixar de existir
+    @ManyToOne(cascade = CascadeType.ALL)
     private GestorDeProjeto gestorDeProjeto;
-    @OneToMany //(mappedBy = "projeto",cascade = CascadeType.ALL)
+
+    @OneToMany (mappedBy = "projeto",cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
 
@@ -80,6 +83,14 @@ public class Projeto {
             // caso seja 2 ->
             default:
                 return Estado.NORMAL;
+        }
+    }
+
+    public void adicionarTarefa(Tarefa tarefa) {
+        if(!this.tarefas.contains(tarefa)){
+            this.tarefas.add(tarefa);
+            tarefa.setProjeto(this);
+
         }
     }
 }

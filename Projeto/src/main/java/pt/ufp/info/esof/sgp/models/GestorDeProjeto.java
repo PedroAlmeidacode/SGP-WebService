@@ -34,8 +34,10 @@ public class GestorDeProjeto extends Utilizador {
 
 
     public void adicionaProjeto(Projeto projeto) {
-        this.projetosGeridos.add(projeto);
-        projeto.setGestorDeProjeto(this);
+        if(!this.projetosGeridos.contains(projeto)) {
+            this.projetosGeridos.add(projeto);
+            projeto.setGestorDeProjeto(this);
+        }
     }
 
 
