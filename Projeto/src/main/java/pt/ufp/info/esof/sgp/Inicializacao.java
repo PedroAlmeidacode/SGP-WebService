@@ -23,7 +23,7 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("\n\n\nInicializou\n\n\n");
+        System.out.println("\n\n\nSGP - Web Service a iniciar ... \n\n\n");
 
 
         Cliente cliente = new Cliente();
