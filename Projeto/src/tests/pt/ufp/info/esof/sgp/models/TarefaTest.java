@@ -90,10 +90,8 @@ class TarefaTest {
         tarefa2.setDuracaoEstimada(100);
         tarefa2.getTarefaAtual().setTempoDedicado(50);
 
-        // gestor
-        GestorDeProjeto gp = new GestorDeProjeto();
-        // experimental
-        gp.atribuirPercentualDeConclusao(tarefa2, 50);
+
+        tarefa2.getTarefaAtual().setPercentualConclusao(50);
 
         // excede 10 minutos o prazo de finalizacao da tarefa que era de Tarefa.dataIniciacao + Tarefa.duracaoEstimada
         tarefa2.getTarefaAtual().setUltimaAtualizacao(tarefa2.getDataIniciacao().plusMinutes(110));
