@@ -11,13 +11,15 @@ import java.util.stream.Collectors;
 @Data
 public class ProjetoCreateDTO implements CreateDTO<Projeto>{
     private String nome;
-    private Cliente cliente;
+    private Long clienteId;
 
     @Override
     public Projeto converter(){
         Projeto projeto = new Projeto();
         projeto.setNome(this.getNome());
-        projeto.setCliente(this.getCliente());
+        Cliente cliente = new Cliente();
+        cliente.setId(clienteId);
+        projeto.setCliente(cliente);
         return projeto;
     }
 }

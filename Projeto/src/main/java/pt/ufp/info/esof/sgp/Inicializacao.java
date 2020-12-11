@@ -15,8 +15,6 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
     @Autowired
     private EmpregadoRepository empregadoRepository;
     @Autowired
-    private GestorDeProjetoRepository gestorDeProjetoRepository;
-    @Autowired
     private ProjetoRepository projetoRepository;
     @Autowired
     private TarefaAtualRepository tarefaAtualRepository;
@@ -25,22 +23,38 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("\n\n\nInicializou\n\n\n");
+        System.out.println("\n\n\nSGP - Web Service a iniciar ... \n\n\n");
 
 
         Cliente cliente = new Cliente();
         cliente.setNome("Jorge");
 
         Projeto projeto = new Projeto();
+        cliente.adicionaProjeto(projeto);
 
-        GestorDeProjeto gestorDeProjeto = new GestorDeProjeto();
 
         //TAREFA ESTADO NORMAL
         Tarefa tarefa = new Tarefa();
+        Tarefa tarefa1 = new Tarefa();
+        Tarefa tarefa2 = new Tarefa();
+        Tarefa tarefa3 = new Tarefa();
+
+        projeto.adicionarTarefa(tarefa);
+        projeto.adicionarTarefa(tarefa1);
+        projeto.adicionarTarefa(tarefa2);
+        projeto.adicionarTarefa(tarefa3);
+
+        this.clienteRepository.save(cliente);
+
         Empregado empregado = new Empregado();
+        Empregado empregado1 = new Empregado();
 
+        empregado.adicionarTarefa(tarefa);
+        empregado.adicionarTarefa(tarefa1);
+        empregado1.adicionarTarefa(tarefa2);
+        empregado1.adicionarTarefa(tarefa3);
 
-        tarefa.atribuirEmpregadoaTarefa(empregado);
+        //tarefa.atribuirEmpregadoaTarefa(empregado);
         // duaracao estimada = 1000 min
         tarefa.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -50,8 +64,8 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
 
         //TAREFA ESTADO NORMAL
-        Tarefa tarefa1 = new Tarefa();
-        tarefa1.atribuirEmpregadoaTarefa(empregado);
+
+
         // duaracao estimada = 1000 min
         tarefa1.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -62,8 +76,7 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
 
         //TAREFA ESTADO ATRASADA
-        Tarefa tarefa2 = new Tarefa();
-        tarefa2.atribuirEmpregadoaTarefa(empregado);
+
         // duaracao estimada = 1000 min
         tarefa2.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -74,8 +87,7 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
 
         //TAREFA ESTADO ADIANTADA
-        Tarefa tarefa3 = new Tarefa();
-        tarefa3.atribuirEmpregadoaTarefa(empregado);
+
         // duaracao estimada = 1000 min
         tarefa3.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -84,19 +96,13 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
         tarefa3.getTarefaAtual().setTempoDedicado(400);
 
 
-        // adiconar 4 tarefas ao projeto
-        projeto.adicionarTarefa(tarefa);
-        projeto.adicionarTarefa(tarefa1);
-        projeto.adicionarTarefa(tarefa2);
-        projeto.adicionarTarefa(tarefa3);
+        this.empregadoRepository.save(empregado);
+        this.empregadoRepository.save(empregado1);
 
-        gestorDeProjeto.adicionaProjeto(projeto);
-
-        cliente.adicionaProjeto(projeto);
-        this.clienteRepository.save(cliente);
-
-
-
+        this.tarefaRepository.save(tarefa1);
+        this.tarefaRepository.save(tarefa2);
+        this.tarefaRepository.save(tarefa3);
+        this.tarefaRepository.save(tarefa);
 
 
     }

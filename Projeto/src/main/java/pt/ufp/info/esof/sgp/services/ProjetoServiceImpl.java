@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.services;
 
+import org.springframework.stereotype.Service;
 import pt.ufp.info.esof.sgp.models.Cliente;
 import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.repositories.ClienteRepository;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProjetoServiceImpl implements ProjetoService{
     private final ClienteRepository clienteRepository;
     private final ProjetoRepository projetoRepository;
