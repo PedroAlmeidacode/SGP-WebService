@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class ProjetoResponseDTO {
     private String nome;
-    private Cliente cliente;
-    private List<Tarefa> tarefas = new ArrayList<>();
+    private ClienteDTO cliente;
+    private List<TarefaCreateDTO> tarefas = new ArrayList<>();
 
 }

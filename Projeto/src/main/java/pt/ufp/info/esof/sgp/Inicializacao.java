@@ -28,6 +28,7 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
         Cliente cliente = new Cliente();
         cliente.setNome("Jorge");
+        cliente.setEmail("jorge.lindo@gmai9l.xom");
 
         Projeto projeto = new Projeto();
         cliente.adicionaProjeto(projeto);

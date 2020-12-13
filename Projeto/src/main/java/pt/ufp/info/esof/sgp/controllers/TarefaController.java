@@ -5,12 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pt.ufp.info.esof.sgp.dtos.EmpregadoCreateDTO;
-import pt.ufp.info.esof.sgp.dtos.EmpregadoResponseDTO;
 import pt.ufp.info.esof.sgp.dtos.TarefaCreateDTO;
 import pt.ufp.info.esof.sgp.dtos.TarefaResponseDTO;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterTarefaParaDTO;
-import pt.ufp.info.esof.sgp.models.Empregado;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 import pt.ufp.info.esof.sgp.services.TarefaService;
 

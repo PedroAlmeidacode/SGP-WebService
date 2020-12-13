@@ -136,4 +136,17 @@ public class Tarefa {
         this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
     }
 
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "id=" + id +
+                ", duracaoEstimada=" + duracaoEstimada +
+                ", dataIniciacao=" + dataIniciacao +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", projeto=" + projeto +
+                ", empregado=" + empregado +
+                ", tarefaAtual=" + tarefaAtual +
+                '}';
+    }
 }

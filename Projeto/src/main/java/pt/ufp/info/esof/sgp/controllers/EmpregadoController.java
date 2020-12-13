@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.ufp.info.esof.sgp.dtos.EmpregadoCreateDTO;
-import pt.ufp.info.esof.sgp.dtos.EmpregadoResponseDTO;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterEmpregadoParaDTO;
 import pt.ufp.info.esof.sgp.models.Empregado;
 import pt.ufp.info.esof.sgp.services.EmpregadoService;
@@ -30,15 +29,15 @@ public class EmpregadoController {
 
 
     @GetMapping()
-    public ResponseEntity<Iterable<EmpregadoResponseDTO>> getAllEmpregado(){
-        List<EmpregadoResponseDTO> responseDTOS=new ArrayList<>();
+    public ResponseEntity<Iterable<EmpregadoCreateDTO>> getAllEmpregado(){
+        List<EmpregadoCreateDTO> responseDTOS=new ArrayList<>();
         empregadoService.findAll().forEach(empregado -> responseDTOS.add(converterEmpregadoParaDTO.converter(empregado)));
         return ResponseEntity.ok(responseDTOS);
     }
 
 
     @PostMapping
-    public ResponseEntity<EmpregadoResponseDTO> createEmpregado(@RequestBody EmpregadoCreateDTO empregado){
+    public ResponseEntity<EmpregadoCreateDTO> createEmpregado(@RequestBody EmpregadoCreateDTO empregado){
         Optional<Empregado> optionalEmpregado=empregadoService.createEmpregado(empregado.converter());
         return optionalEmpregado.map(value -> ResponseEntity.ok(converterEmpregadoParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }

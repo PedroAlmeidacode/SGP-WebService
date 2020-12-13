@@ -16,7 +16,7 @@ public class Cliente extends Utilizador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String gmail;
+    private String email;
 
     @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
     private List<Projeto> projetos = new ArrayList<>();

@@ -1,6 +1,8 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
+import pt.ufp.info.esof.sgp.dtos.ClienteDTO;
 import pt.ufp.info.esof.sgp.dtos.ProjetoResponseDTO;
+import pt.ufp.info.esof.sgp.dtos.TarefaCreateDTO;
 import pt.ufp.info.esof.sgp.models.Projeto;
 
 import java.util.stream.Collectors;
@@ -9,17 +11,22 @@ public class ConverterProjetoParaDTO implements Conversor<ProjetoResponseDTO, Pr
     @Override
     public ProjetoResponseDTO converter(Projeto projeto) {
         ProjetoResponseDTO responseDTO=new ProjetoResponseDTO();
-        responseDTO.setCliente(projeto.getCliente());
         responseDTO.setNome(projeto.getNome());
-        responseDTO.setTarefas(projeto.getTarefas().stream().peek(tarefa -> {
-            tarefa.setDescricao(tarefa.getDescricao());
-            tarefa.setDataIniciacao(tarefa.getDataIniciacao());
-            tarefa.setTitulo(tarefa.getTitulo());
-            tarefa.setDuracaoEstimada(tarefa.getDuracaoEstimada());
+
+        ClienteDTO clienteDTO = new ClienteDTO();
+        clienteDTO.setEmail(projeto.getCliente().getEmail());
+        responseDTO.setCliente(clienteDTO);
+
+
+        responseDTO.setTarefas(projeto.getTarefas().stream().map(tarefa -> {
+            TarefaCreateDTO tarefaDTO=new TarefaCreateDTO();
+
+            tarefaDTO.setDuracaoEstimada(tarefa.getDuracaoEstimada());
+            tarefaDTO.setDescricao(tarefa.getDescricao());
+            tarefaDTO.setTitulo(tarefa.getTitulo());
+            return tarefaDTO;
         }).collect(Collectors.toList()));
+
         return responseDTO;
     }
-
-
-
 }
