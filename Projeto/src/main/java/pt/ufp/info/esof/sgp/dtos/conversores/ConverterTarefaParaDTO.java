@@ -2,18 +2,14 @@ package pt.ufp.info.esof.sgp.dtos.conversores;
 
 import pt.ufp.info.esof.sgp.dtos.EmpregadoCreateDTO;
 import pt.ufp.info.esof.sgp.dtos.TarefaAtualDTO;
-import pt.ufp.info.esof.sgp.dtos.TarefaCreateDTO;
 import pt.ufp.info.esof.sgp.dtos.TarefaResponseDTO;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 
-import java.util.stream.Collectors;
 
 public class ConverterTarefaParaDTO implements Conversor<TarefaResponseDTO, Tarefa>{
 
     @Override
     public TarefaResponseDTO converter(Tarefa tarefa){
-        System.out.println(tarefa.toString());
-
         TarefaResponseDTO responseDTO = new TarefaResponseDTO();
         responseDTO.setDescricao(tarefa.getDescricao());
         responseDTO.setTitulo(tarefa.getTitulo());

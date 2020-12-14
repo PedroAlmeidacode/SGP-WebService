@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode(callSuper = true)
 public class Cliente extends Utilizador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

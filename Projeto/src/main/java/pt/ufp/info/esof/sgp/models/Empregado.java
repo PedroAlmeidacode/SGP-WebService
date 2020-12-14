@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import pt.ufp.info.esof.sgp.models.enums.Cargo;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Empregado extends Utilizador {
 
     @Id

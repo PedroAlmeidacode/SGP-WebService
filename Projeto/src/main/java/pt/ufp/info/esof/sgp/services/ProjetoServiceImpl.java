@@ -71,4 +71,12 @@ public class ProjetoServiceImpl implements ProjetoService{
         // projeto nao existe
         return Optional.empty();
     }
+
+
+    @Override
+    public Optional<Projeto> findById(Long idProjeto) {
+        return projetoRepository.findById(idProjeto);
+    }
+
+
 }

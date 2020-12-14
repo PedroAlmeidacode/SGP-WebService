@@ -52,7 +52,7 @@ public class Projeto {
      *
      * @return objeto estado , define estado do projeto
      */
-    protected Estado calcularEstado() {
+    public Estado calcularEstado() {
         // se nao houver nenhuma tarefa neste projeto
         if (this.tarefas.isEmpty()) return Estado.SEM_TAREFAS_SUBMETIDAS;
         int estadoPercentual = 0;

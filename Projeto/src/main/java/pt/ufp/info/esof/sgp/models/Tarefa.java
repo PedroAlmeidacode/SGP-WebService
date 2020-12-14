@@ -83,7 +83,7 @@ public class Tarefa {
     /**
      * @return estado de tarefa
      */
-    protected Estado getEstadoTarefa() {
+    public Estado getEstadoTarefa() {
 
         // tarefa nao foi atribuida a empregado, se nao tiver tarefa atual
         if (this.getTarefaAtual() == null)

@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface ProjetoService {
 
+    Optional<Projeto> findById(Long idProjeto);
+
     Optional<Projeto> createProjeto(Projeto converter);
 
     Optional<Projeto> adicionarTarefa(Long idProjeto, Tarefa converter);
