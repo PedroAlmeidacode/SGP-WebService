@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.services;
 
+import pt.ufp.info.esof.sgp.models.Cliente;
 import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 
