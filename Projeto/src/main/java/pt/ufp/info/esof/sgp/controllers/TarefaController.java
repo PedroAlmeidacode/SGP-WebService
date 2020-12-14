@@ -2,12 +2,10 @@ package pt.ufp.info.esof.sgp.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pt.ufp.info.esof.sgp.dtos.TarefaCreateDTO;
-import pt.ufp.info.esof.sgp.dtos.TarefaResponseDTO;
+import org.springframework.web.bind.annotation.*;
+import pt.ufp.info.esof.sgp.dtos.*;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterTarefaParaDTO;
+import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 import pt.ufp.info.esof.sgp.services.TarefaService;
 
@@ -29,5 +27,16 @@ public class TarefaController {
         Optional<Tarefa> optionalTarefa= tarefaService.createTarefa(tarefa.converter());
         return optionalTarefa.map(value -> ResponseEntity.ok(converterTarefaParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
+
+
+
+
+    //PATCH /tarefa/empregado/{idTarefa}
+    @PatchMapping("/empregado/{idTarefa}")
+    public ResponseEntity<TarefaResponseDTO> adicionaEmpregadoATarefa(@PathVariable Long idTarefa, @RequestBody AdicionarEmpregadoATarefaDTO empregado){
+        Optional<Tarefa> optionalTarefa = tarefaService.adicionarEmpregado(idTarefa,empregado.converter());
+        return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
 
 }
