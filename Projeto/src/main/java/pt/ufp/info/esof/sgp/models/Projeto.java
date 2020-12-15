@@ -22,11 +22,7 @@ public class Projeto {
     @ManyToOne
     private Cliente cliente;
 
-    // TODO gestor de projeto vai deixar de existir
-    @ManyToOne(cascade = CascadeType.ALL)
-    private GestorDeProjeto gestorDeProjeto;
-
-    @OneToMany (mappedBy = "projeto",cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "projeto", cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
 
@@ -56,7 +52,7 @@ public class Projeto {
      *
      * @return objeto estado , define estado do projeto
      */
-    protected Estado calcularEstado() {
+    public Estado calcularEstado() {
         // se nao houver nenhuma tarefa neste projeto
         if (this.tarefas.isEmpty()) return Estado.SEM_TAREFAS_SUBMETIDAS;
         int estadoPercentual = 0;
@@ -93,4 +89,5 @@ public class Projeto {
 
         }
     }
+
 }

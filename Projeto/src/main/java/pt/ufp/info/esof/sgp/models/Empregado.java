@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import pt.ufp.info.esof.sgp.models.enums.Cargo;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Empregado extends Utilizador {
 
     @Id
@@ -20,6 +22,7 @@ public class Empregado extends Utilizador {
     @OneToMany(mappedBy = "empregado")
     private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
+    private String email;
 
     /**
      * incluir tempo dedicado para alem do incluido anteriormente
@@ -30,10 +33,8 @@ public class Empregado extends Utilizador {
         // se o empregado que esta a trabalhar na tarefa for o que esta a tentar incluir
         if (tarefa.getEmpregado().equals(this)) {
             // ir à tarefa buscar a tarefa atual e buscar o tempo ja colocado
-            int tempoAtual = tarefa.getTarefaAtual().getTempoDedicado();
-            // adicionar mais o tempo
-            tarefa.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
-            // TODO refactorizar set tempo dedicado
+            if(tempo <= 0) return;
+            tarefa.setTempoDedicadoEmTarefaAtual(tempo);
         }
     }
 
@@ -42,6 +43,10 @@ public class Empregado extends Utilizador {
         if(!this.tarefas.contains(tarefa)){
             tarefas.add(tarefa);
             tarefa.setEmpregado(this);
+            //cria tarefa atual
+            tarefa.atribuirEmpregadoaTarefa(this);
         }
     }
+
+
 }

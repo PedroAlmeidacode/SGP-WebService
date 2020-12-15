@@ -1,7 +1,9 @@
 package pt.ufp.info.esof.sgp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 import javax.persistence.*;
@@ -21,15 +23,15 @@ public class Tarefa {
 
     private int duracaoEstimada; // minutos estimados, tem que ser expressa em minutos
     // inicializada ao atribuir um empregado a tarefa
-    // TODO @JsonFormat(pattern = "yyyy-MM-dd HH:mm",shape = JsonFormat.Shape.STRING)
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm",shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataIniciacao;
     private String titulo;
     private String descricao;
     @ManyToOne
     private  Projeto projeto;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Empregado empregado;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private TarefaAtual tarefaAtual;
 
 
@@ -75,16 +77,13 @@ public class Tarefa {
         this.tarefaAtual = new TarefaAtual();
         // colocar a ultima atualizacao como a data presente
         this.tarefaAtual.setUltimaAtualizacao(LocalDateTime.now());
-        // adiciona esta tarefa as tarefas de empregado
-        // adiciona o empregado a esta tarefa
-        empregado.adicionarTarefa(this);
     }
 
 
     /**
      * @return estado de tarefa
      */
-    protected Estado getEstadoTarefa() {
+    public Estado getEstadoTarefa() {
 
         // tarefa nao foi atribuida a empregado, se nao tiver tarefa atual
         if (this.getTarefaAtual() == null)
@@ -130,4 +129,24 @@ public class Tarefa {
         else return Estado.ATRASADA;
     }
 
+
+    public void setTempoDedicadoEmTarefaAtual(int tempo){
+        int tempoAtual = this.getTarefaAtual().getTempoDedicado();
+        // adicionar mais o tempo
+        this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+    }
+
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "id=" + id +
+                ", duracaoEstimada=" + duracaoEstimada +
+                ", dataIniciacao=" + dataIniciacao +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", projeto=" + projeto +
+                ", empregado=" + empregado +
+                ", tarefaAtual=" + tarefaAtual +
+                '}';
+    }
 }
