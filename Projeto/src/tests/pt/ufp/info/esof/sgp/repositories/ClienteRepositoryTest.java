@@ -24,8 +24,5 @@ class ClienteRepositoryTest {
 
         this.clienteRepository.save(cliente);
         assertEquals(1,clienteRepository.count());
-
-
     }
-
 }

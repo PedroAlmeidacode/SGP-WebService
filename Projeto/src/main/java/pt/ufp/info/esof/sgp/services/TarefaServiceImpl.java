@@ -1,10 +1,8 @@
 package pt.ufp.info.esof.sgp.services;
 
 import org.springframework.stereotype.Service;
-import pt.ufp.info.esof.sgp.models.Cliente;
-import pt.ufp.info.esof.sgp.models.Empregado;
-import pt.ufp.info.esof.sgp.models.Projeto;
-import pt.ufp.info.esof.sgp.models.Tarefa;
+import pt.ufp.info.esof.sgp.dtos.PercentualTarefaDTO;
+import pt.ufp.info.esof.sgp.models.*;
 import pt.ufp.info.esof.sgp.repositories.ClienteRepository;
 import pt.ufp.info.esof.sgp.repositories.EmpregadoRepository;
 import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
@@ -55,4 +53,31 @@ public class TarefaServiceImpl implements TarefaService{
         }
         // nao tem tarefa com o id passado
         return Optional.empty();    }
+
+    @Override
+    public Optional<Tarefa> addPercentualTarefa(Long idTarefa,Float percentual) {
+        Optional<Tarefa> optionalTarefa =tarefaRepository.findById(idTarefa);
+        if(optionalTarefa.isPresent())  //caso a taref exista na BD
+        {
+            Tarefa tarefa = optionalTarefa.get();               //vai buscar a tarefa ao optional
+            TarefaAtual tarefaAtual= tarefa.getTarefaAtual();   //vai buscar a atual da tarefa
+            tarefaAtual.setPercentualConclusao(percentual);     //modifica o percentual
+            return Optional.of(tarefaRepository.save(tarefa));  //dá save á tarefa
+        }
+        return Optional.empty();    //caso essa tarefa não exista retorna um optional vasio que depois o controler dá handle
+    }
+
+    @Override
+    public Optional<Tarefa> addTempoDedicadoTarefa(Long idTarefa, int tempoDedicado) {
+        Optional<Tarefa> optionalTarefa=tarefaRepository.findById(idTarefa);
+        if(optionalTarefa.isPresent())
+        {
+            Tarefa tarefa= optionalTarefa.get();
+            TarefaAtual tarefaAtual=tarefa.getTarefaAtual();
+            tarefaAtual.adicionarTempoDedicado(tempoDedicado);
+            return Optional.of(tarefaRepository.save(tarefa));
+        }
+        return Optional.empty();
+    }
 }
+

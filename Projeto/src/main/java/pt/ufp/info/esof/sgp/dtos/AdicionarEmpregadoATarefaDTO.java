@@ -12,8 +12,8 @@ public class AdicionarEmpregadoATarefaDTO implements CreateDTO<Empregado> {
 
     @Override
     public Empregado converter(){
-        Empregado empregado = new Empregado();
-        empregado.setId(this.idEmpregado);
-        return empregado;
+            Empregado empregado = new Empregado();
+            empregado.setId(this.idEmpregado);
+            return empregado;
     }
 }
