@@ -55,7 +55,7 @@ public class TarefaServiceImpl implements TarefaService{
         return Optional.empty();    }
 
     @Override
-    public Optional<Tarefa> addPercentualTarefa(Long idTarefa,Float percentual) {
+    public Optional<Tarefa> adicionarPercentualTarefa(Long idTarefa,Float percentual) {
         Optional<Tarefa> optionalTarefa =tarefaRepository.findById(idTarefa);
         if(optionalTarefa.isPresent())  //caso a taref exista na BD
         {
@@ -68,7 +68,7 @@ public class TarefaServiceImpl implements TarefaService{
     }
 
     @Override
-    public Optional<Tarefa> addTempoDedicadoTarefa(Long idTarefa, int tempoDedicado) {
+    public Optional<Tarefa> adicionarTempoDedicadoTarefa(Long idTarefa, int tempoDedicado) {
         Optional<Tarefa> optionalTarefa=tarefaRepository.findById(idTarefa);
         if(optionalTarefa.isPresent())
         {

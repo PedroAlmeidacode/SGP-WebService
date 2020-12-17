@@ -36,16 +36,16 @@ public class TarefaController {
     }
 
     @PatchMapping("/{idTarefa}/percentualConclusao")
-    public ResponseEntity<TarefaResponseDTO> addPercentualTarefa(@PathVariable Long idTarefa, @RequestBody PercentualTarefaDTO percentual)
+    public ResponseEntity<TarefaResponseDTO> adicionaPercentualTarefa(@PathVariable Long idTarefa, @RequestBody PercentualTarefaDTO percentual)
     {
-        Optional<Tarefa> optionalTarefa=tarefaService.addPercentualTarefa(idTarefa,percentual.converter());
+        Optional<Tarefa> optionalTarefa=tarefaService.adicionarPercentualTarefa(idTarefa,percentual.converter());
         return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(()->ResponseEntity.badRequest().build());
     }
 
     @PatchMapping("/{idTarefa}/tempoDedicado")
-    public ResponseEntity<TarefaResponseDTO> addTempoDedicadoTarefa(@PathVariable Long idTarefa, @RequestBody TempoDedicadoTarefaDTO tempoDedicado)
+    public ResponseEntity<TarefaResponseDTO> adicionaTempoDedicadoTarefa(@PathVariable Long idTarefa, @RequestBody TempoDedicadoTarefaDTO tempoDedicado)
     {
-        Optional<Tarefa> optionalTarefa=tarefaService.addTempoDedicadoTarefa(idTarefa,tempoDedicado.converter());
+        Optional<Tarefa> optionalTarefa=tarefaService.adicionarTempoDedicadoTarefa(idTarefa,tempoDedicado.converter());
         return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(()->ResponseEntity.badRequest().build());
     }
 
