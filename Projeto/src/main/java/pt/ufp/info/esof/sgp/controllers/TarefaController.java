@@ -38,26 +38,8 @@ public class TarefaController {
         return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    //GET /projeto/{idProjeto}/valor
-    @GetMapping("/{idProjeto}/valor")
-    public ResponseEntity<Custo> getCustoProjeto(@PathVariable Long idProjeto){
-        Optional<Projeto> optionalProjeto=projetoService.findById(idProjeto);
-        return optionalProjeto.map(projeto -> {
-            Custo custo = projeto.calcularCusto();
-            return ResponseEntity.ok(custo);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-    é isso?
-    //GET /projeto/{idProjeto}/duracao
-    @GetMapping("/{idProjeto}/duracao")
-    public ResponseEntity<Duracao> getDuracaoProjeto(@PathVariable Long idProjeto){
-        Optional<Projeto> optionalProjeto=projetoService.findById(idProjeto);
-        return optionalProjeto.map(projeto -> {
-            Duracao duracao = projeto.calcularDuracao();
-            return ResponseEntity.ok(duracao);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
-    }
+
 }
 
 
-}
+

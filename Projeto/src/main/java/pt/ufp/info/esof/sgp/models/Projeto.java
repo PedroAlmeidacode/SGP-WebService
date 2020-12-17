@@ -29,7 +29,7 @@ public class Projeto {
     /**
      * @return a soma da duracao de todas tarefas incluidas neste projeto
      */
-    protected int calcularDuracao() {
+    public int calcularDuracao() {
         // retorna a soma de duracao de todas as tarefas
         return this.tarefas.stream().mapToInt(Tarefa::getDuracaoEstimada).sum();
     }
@@ -38,7 +38,7 @@ public class Projeto {
     /**
      * @return a soma do custo de todas tarefas incluidas neste projeto
      */
-    protected double calcularCusto() {
+    public double calcularCusto() {
         // retorna o custo da soma de todas as tarefas
         return this.tarefas.stream().mapToDouble(Tarefa::getCustoTarefa).sum();
     }

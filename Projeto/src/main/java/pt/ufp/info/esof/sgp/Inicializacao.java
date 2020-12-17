@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import pt.ufp.info.esof.sgp.models.*;
+import pt.ufp.info.esof.sgp.models.enums.Cargo;
 import pt.ufp.info.esof.sgp.repositories.*;
 
 @Component
@@ -49,6 +50,8 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
 
         Empregado empregado = new Empregado();
         Empregado empregado1 = new Empregado();
+        empregado.setCargo(Cargo.ANALISTA_JUNIOR);
+        empregado1.setCargo(Cargo.ANLISTA_SENIOR);
 
         empregado.adicionarTarefa(tarefa);
         empregado.adicionarTarefa(tarefa1);
