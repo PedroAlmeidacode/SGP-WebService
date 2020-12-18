@@ -1,8 +1,8 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
 import pt.ufp.info.esof.sgp.dtos.ClienteDTO;
-import pt.ufp.info.esof.sgp.dtos.ProjetoResponseDTO;
-import pt.ufp.info.esof.sgp.dtos.TarefaCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.ProjetoResponseDTO;
+import pt.ufp.info.esof.sgp.dtos.creators.TarefaCreateDTO;
 import pt.ufp.info.esof.sgp.models.Projeto;
 
 import java.util.stream.Collectors;

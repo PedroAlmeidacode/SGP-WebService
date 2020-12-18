@@ -1,6 +1,6 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
-import pt.ufp.info.esof.sgp.dtos.EmpregadoCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.creators.EmpregadoCreateDTO;
 import pt.ufp.info.esof.sgp.models.Empregado;
 
 

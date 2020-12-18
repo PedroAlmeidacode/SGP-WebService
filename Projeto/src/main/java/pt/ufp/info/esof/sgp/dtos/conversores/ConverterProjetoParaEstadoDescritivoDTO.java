@@ -1,7 +1,7 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
-import pt.ufp.info.esof.sgp.dtos.EstadoDescritivoProjetoDTO;
-import pt.ufp.info.esof.sgp.dtos.EstadoTarefaDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.EstadoDescritivoProjetoDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.EstadoTarefaDTO;
 import pt.ufp.info.esof.sgp.models.Projeto;
 
 import java.util.stream.Collectors;

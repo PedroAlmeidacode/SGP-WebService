@@ -1,8 +1,8 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
-import pt.ufp.info.esof.sgp.dtos.EmpregadoCreateDTO;
-import pt.ufp.info.esof.sgp.dtos.TarefaAtualDTO;
-import pt.ufp.info.esof.sgp.dtos.TarefaResponseDTO;
+import pt.ufp.info.esof.sgp.dtos.creators.EmpregadoCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.TarefaAtualDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.TarefaResponseDTO;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 
 

@@ -1,6 +1,6 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
-import pt.ufp.info.esof.sgp.dtos.EstadoResponseDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.EstadoResponseDTO;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 public class ConverterEstadoParaDTO implements Conversor<EstadoResponseDTO, Estado> {

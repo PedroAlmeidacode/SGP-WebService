@@ -3,8 +3,12 @@ package pt.ufp.info.esof.sgp.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pt.ufp.info.esof.sgp.dtos.*;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterTarefaParaDTO;
+import pt.ufp.info.esof.sgp.dtos.creators.TarefaCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.objectWithID.AdicionarEmpregadoATarefaDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.PercentualTarefaDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.TarefaResponseDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.TempoDedicadoTarefaDTO;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 import pt.ufp.info.esof.sgp.services.TarefaService;
 

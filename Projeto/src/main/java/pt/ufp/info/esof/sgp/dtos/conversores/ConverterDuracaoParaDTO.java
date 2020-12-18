@@ -1,8 +1,6 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
-import pt.ufp.info.esof.sgp.dtos.DuracaoResponseDTO;
-
-import java.time.Period;
+import pt.ufp.info.esof.sgp.dtos.responses.DuracaoResponseDTO;
 
 public class ConverterDuracaoParaDTO implements Conversor<DuracaoResponseDTO, Integer> {
     @Override

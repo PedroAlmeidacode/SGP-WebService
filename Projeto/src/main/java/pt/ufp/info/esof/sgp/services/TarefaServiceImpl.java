@@ -1,15 +1,11 @@
 package pt.ufp.info.esof.sgp.services;
 
 import org.springframework.stereotype.Service;
-import pt.ufp.info.esof.sgp.dtos.PercentualTarefaDTO;
 import pt.ufp.info.esof.sgp.models.*;
 
-import pt.ufp.info.esof.sgp.models.Cliente;
 import pt.ufp.info.esof.sgp.models.Empregado;
-import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 
-import pt.ufp.info.esof.sgp.repositories.ClienteRepository;
 import pt.ufp.info.esof.sgp.repositories.EmpregadoRepository;
 import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
 
