@@ -62,14 +62,13 @@ public class TarefaServiceImpl implements TarefaService {
     }
 
 
-
     @Override
-    public Optional<Tarefa> adicionarPercentualTarefa(Long idTarefa,Float percentual) {
-        Optional<Tarefa> optionalTarefa =tarefaRepository.findById(idTarefa);
-        if(optionalTarefa.isPresent())  //caso a taref exista na BD
+    public Optional<Tarefa> adicionarPercentualTarefa(Long idTarefa, Float percentual) {
+        Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
+        if (optionalTarefa.isPresent())  //caso a taref exista na BD
         {
             Tarefa tarefa = optionalTarefa.get();               //vai buscar a tarefa ao optional
-            TarefaAtual tarefaAtual= tarefa.getTarefaAtual();   //vai buscar a atual da tarefa
+            TarefaAtual tarefaAtual = tarefa.getTarefaAtual();   //vai buscar a atual da tarefa
             tarefaAtual.setPercentualConclusao(percentual);     //modifica o percentual
             return Optional.of(tarefaRepository.save(tarefa));  //dá save á tarefa
         }
@@ -78,11 +77,10 @@ public class TarefaServiceImpl implements TarefaService {
 
     @Override
     public Optional<Tarefa> adicionarTempoDedicadoTarefa(Long idTarefa, int tempoDedicado) {
-        Optional<Tarefa> optionalTarefa=tarefaRepository.findById(idTarefa);
-        if(optionalTarefa.isPresent())
-        {
-            Tarefa tarefa= optionalTarefa.get();
-            TarefaAtual tarefaAtual=tarefa.getTarefaAtual();
+        Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
+        if (optionalTarefa.isPresent()) {
+            Tarefa tarefa = optionalTarefa.get();
+            TarefaAtual tarefaAtual = tarefa.getTarefaAtual();
             tarefaAtual.adicionarTempoDedicado(tempoDedicado);
             return Optional.of(tarefaRepository.save(tarefa));
         }

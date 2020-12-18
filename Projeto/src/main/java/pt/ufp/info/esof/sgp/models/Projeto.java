@@ -22,7 +22,7 @@ public class Projeto {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany (mappedBy = "projeto", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "projeto", cascade = CascadeType.ALL)
     private List<Tarefa> tarefas = new ArrayList<>();
 
 
@@ -83,7 +83,7 @@ public class Projeto {
     }
 
     public void adicionarTarefa(Tarefa tarefa) {
-        if(!this.tarefas.contains(tarefa)){
+        if (!this.tarefas.contains(tarefa)) {
             this.tarefas.add(tarefa);
             tarefa.setProjeto(this);
 

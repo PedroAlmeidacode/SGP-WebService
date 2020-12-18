@@ -6,8 +6,7 @@ import lombok.Data;
 public class TempoDedicadoTarefaDTO {
     private int tempoDedicado;
 
-    public int converter()
-    {
+    public int converter() {
         return tempoDedicado;
     }
 }

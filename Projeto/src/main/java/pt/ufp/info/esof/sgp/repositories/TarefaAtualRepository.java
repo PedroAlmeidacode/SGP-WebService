@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pt.ufp.info.esof.sgp.models.TarefaAtual;
 
 @Repository
-public interface TarefaAtualRepository extends CrudRepository<TarefaAtual,Long> {
+public interface TarefaAtualRepository extends CrudRepository<TarefaAtual, Long> {
 }

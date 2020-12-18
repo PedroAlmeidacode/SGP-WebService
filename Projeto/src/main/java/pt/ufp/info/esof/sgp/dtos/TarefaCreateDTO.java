@@ -1,18 +1,18 @@
 package pt.ufp.info.esof.sgp.dtos;
 
 import lombok.Data;
-import pt.ufp.info.esof.sgp.models.*;
+import pt.ufp.info.esof.sgp.models.Tarefa;
 
 // devolver este dto como response
 @Data
-public class TarefaCreateDTO implements CreateDTO<Tarefa>{
+public class TarefaCreateDTO implements CreateDTO<Tarefa> {
     private int duracaoEstimada;
     private String titulo;
     private String descricao;
 
 
     @Override
-    public Tarefa converter(){
+    public Tarefa converter() {
         Tarefa tarefa = new Tarefa();
         tarefa.setTitulo(this.getTitulo());
         tarefa.setDuracaoEstimada(this.getDuracaoEstimada());

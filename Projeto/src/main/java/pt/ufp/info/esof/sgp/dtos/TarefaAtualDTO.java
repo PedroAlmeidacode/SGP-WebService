@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 public class TarefaAtualDTO {
     private int tempoDedicado;
     private float percentualConclusao;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm", shape = JsonFormat.Shape.STRING)
     private LocalDateTime ultimaAtualizacao;
 
 }

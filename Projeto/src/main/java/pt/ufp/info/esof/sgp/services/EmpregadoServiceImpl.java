@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmpregadoServiceImpl implements EmpregadoService{
+public class EmpregadoServiceImpl implements EmpregadoService {
 
     private final EmpregadoRepository empregadoRepository;
 
@@ -20,8 +20,8 @@ public class EmpregadoServiceImpl implements EmpregadoService{
 
     @Override
     public Optional<Empregado> createEmpregado(Empregado empregado) {
-        Optional<Empregado> optionalExplicador=empregadoRepository.findByEmail(empregado.getEmail());
-        if(optionalExplicador.isEmpty()){
+        Optional<Empregado> optionalExplicador = empregadoRepository.findByEmail(empregado.getEmail());
+        if (optionalExplicador.isEmpty()) {
             return Optional.of(empregadoRepository.save(empregado));
         }
         return Optional.empty();
@@ -30,7 +30,7 @@ public class EmpregadoServiceImpl implements EmpregadoService{
 
     @Override
     public List<Empregado> findAll() {
-        List<Empregado> empregados=new ArrayList<>();
+        List<Empregado> empregados = new ArrayList<>();
         empregadoRepository.findAll().forEach(empregados::add);
         return empregados;
     }

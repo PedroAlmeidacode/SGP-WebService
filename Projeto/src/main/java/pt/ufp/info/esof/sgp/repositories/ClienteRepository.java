@@ -7,6 +7,6 @@ import pt.ufp.info.esof.sgp.models.Cliente;
 import java.util.Optional;
 
 @Repository
-public interface ClienteRepository extends CrudRepository<Cliente,Long> {
+public interface ClienteRepository extends CrudRepository<Cliente, Long> {
     Optional<Cliente> findByEmail(String nome);
 }

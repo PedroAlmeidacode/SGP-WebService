@@ -19,11 +19,11 @@ public class Cliente extends Utilizador {
     private Long id;
     private String email;
 
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Projeto> projetos = new ArrayList<>();
 
     public void adicionaProjeto(Projeto projeto) {
-        if(!this.projetos.contains(projeto)) {
+        if (!this.projetos.contains(projeto)) {
             this.projetos.add(projeto);
             projeto.setCliente(this);
         }

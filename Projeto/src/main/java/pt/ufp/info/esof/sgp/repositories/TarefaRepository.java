@@ -7,6 +7,6 @@ import pt.ufp.info.esof.sgp.models.Tarefa;
 import java.util.Optional;
 
 @Repository
-public interface TarefaRepository extends CrudRepository<Tarefa,Long> {
+public interface TarefaRepository extends CrudRepository<Tarefa, Long> {
     Optional<Tarefa> findByTitulo(String titulo);
 }

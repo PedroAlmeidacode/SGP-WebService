@@ -7,6 +7,6 @@ import pt.ufp.info.esof.sgp.models.Empregado;
 import java.util.Optional;
 
 @Repository
-public interface EmpregadoRepository extends CrudRepository<Empregado,Long> {
+public interface EmpregadoRepository extends CrudRepository<Empregado, Long> {
     Optional<Empregado> findByEmail(String email);
 }

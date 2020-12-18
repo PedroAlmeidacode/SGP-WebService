@@ -34,12 +34,11 @@ public class TarefaAtual {
     }
 
 
-    public void setUltimaAtualizacaoParaAgora(){
+    public void setUltimaAtualizacaoParaAgora() {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
-    public void adicionarTempoDedicado(int tempoDedicado)
-    {
-        this.tempoDedicado+= tempoDedicado;
+    public void adicionarTempoDedicado(int tempoDedicado) {
+        this.tempoDedicado += tempoDedicado;
     }
 }

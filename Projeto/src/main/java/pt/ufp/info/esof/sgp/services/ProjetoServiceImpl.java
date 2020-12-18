@@ -12,7 +12,7 @@ import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
 import java.util.Optional;
 
 @Service
-public class ProjetoServiceImpl implements ProjetoService{
+public class ProjetoServiceImpl implements ProjetoService {
     private final ClienteRepository clienteRepository;
     private final ProjetoRepository projetoRepository;
     private final TarefaRepository tarefaRepository;
@@ -25,12 +25,11 @@ public class ProjetoServiceImpl implements ProjetoService{
 
     @Override
     public Optional<Projeto> createProjeto(Projeto projeto) {
-        Optional<Projeto> optionalProjeto=projetoRepository.findByNome(projeto.getNome());
-        if(optionalProjeto.isEmpty())
-        {
-            Optional<Cliente> optionalCliente=clienteRepository.findById(projeto.getCliente().getId());
-            if(optionalCliente.isPresent()){ // caso ele exista na BD
-                Cliente cliente=optionalCliente.get();
+        Optional<Projeto> optionalProjeto = projetoRepository.findByNome(projeto.getNome());
+        if (optionalProjeto.isEmpty()) {
+            Optional<Cliente> optionalCliente = clienteRepository.findById(projeto.getCliente().getId());
+            if (optionalCliente.isPresent()) { // caso ele exista na BD
+                Cliente cliente = optionalCliente.get();
                 // faz a associacao
                 cliente.adicionaProjeto(projeto);
                 clienteRepository.save(optionalCliente.get());
@@ -49,15 +48,15 @@ public class ProjetoServiceImpl implements ProjetoService{
     public Optional<Projeto> adicionarTarefa(Long idProjeto, Tarefa tarefa) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
 
-        if(optionalProjeto.isPresent()){
-            Projeto projeto=optionalProjeto.get();
-            int quantidadeDTarefasAntes=projeto.getTarefas().size();
+        if (optionalProjeto.isPresent()) {
+            Projeto projeto = optionalProjeto.get();
+            int quantidadeDTarefasAntes = projeto.getTarefas().size();
 
             Optional<Tarefa> optionalTarefa = tarefaRepository.findById(tarefa.getId());
-            if(optionalTarefa.isPresent()) {
+            if (optionalTarefa.isPresent()) {
                 Tarefa t = optionalTarefa.get();
                 // se a tarefa ja nao tem um projeto associado
-                if(t.getProjeto() == null) {
+                if (t.getProjeto() == null) {
                     // associacao entre os dois em models
                     projeto.adicionarTarefa(t);
                     int quantidadedeTarefasDepois = projeto.getTarefas().size();
@@ -82,8 +81,8 @@ public class ProjetoServiceImpl implements ProjetoService{
     @Override
     public Optional<Estado> getEstadoProjeto(Long idProjeto) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
-        if(optionalProjeto.isPresent()){
-            Projeto projeto=optionalProjeto.get();
+        if (optionalProjeto.isPresent()) {
+            Projeto projeto = optionalProjeto.get();
             return Optional.of(projeto.calcularEstado());
         }
         // projeto nao existe
@@ -94,8 +93,8 @@ public class ProjetoServiceImpl implements ProjetoService{
     @Override
     public Optional<Double> getCustoProjeto(Long idProjeto) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
-        if(optionalProjeto.isPresent()){
-            Projeto projeto=optionalProjeto.get();
+        if (optionalProjeto.isPresent()) {
+            Projeto projeto = optionalProjeto.get();
             return Optional.of(projeto.calcularCusto());
         }
         // projeto nao existe
@@ -105,8 +104,8 @@ public class ProjetoServiceImpl implements ProjetoService{
     @Override
     public Optional<Integer> getDuracaoProjeto(Long idProjeto) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
-        if(optionalProjeto.isPresent()){
-            Projeto projeto=optionalProjeto.get();
+        if (optionalProjeto.isPresent()) {
+            Projeto projeto = optionalProjeto.get();
             return Optional.of(projeto.calcularDuracao());
         }
         // projeto nao existe

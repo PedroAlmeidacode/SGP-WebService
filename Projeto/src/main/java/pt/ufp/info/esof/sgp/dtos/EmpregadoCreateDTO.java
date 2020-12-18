@@ -12,7 +12,7 @@ public class EmpregadoCreateDTO implements CreateDTO<Empregado> {
     private String email;
 
     @Override
-    public Empregado converter(){
+    public Empregado converter() {
         Empregado empregado = new Empregado();
         empregado.setNome(this.getNome());
         empregado.setEmail(this.getEmail());

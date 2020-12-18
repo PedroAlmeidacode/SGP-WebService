@@ -8,6 +8,6 @@ import java.util.Optional;
 
 
 @Repository
-public interface ProjetoRepository extends CrudRepository<Projeto,Long> {
+public interface ProjetoRepository extends CrudRepository<Projeto, Long> {
     Optional<Projeto> findByNome(String nome);
 }

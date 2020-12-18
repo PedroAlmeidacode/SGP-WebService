@@ -31,36 +31,34 @@ public class ProjetoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProjetoResponseDTO> createProjeto(@RequestBody ProjetoCreateDTO projeto){
-        Optional<Projeto> optionalExplicador=projetoService.createProjeto(projeto.converter());
+    public ResponseEntity<ProjetoResponseDTO> createProjeto(@RequestBody ProjetoCreateDTO projeto) {
+        Optional<Projeto> optionalExplicador = projetoService.createProjeto(projeto.converter());
         return optionalExplicador.map(value -> ResponseEntity.ok(converterProjetoParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
 
     // PATCH /projeto/tarefa/{idProjeto}
     @PatchMapping("/tarefa/{idProjeto}")
-    public ResponseEntity<ProjetoResponseDTO> adicionaTarefaAProjeto(@PathVariable Long idProjeto, @RequestBody AdicionarTarefaAProjetoDTO tarefa){
-        Optional<Projeto> optionalProjeto = projetoService.adicionarTarefa(idProjeto,tarefa.converter());
+    public ResponseEntity<ProjetoResponseDTO> adicionaTarefaAProjeto(@PathVariable Long idProjeto, @RequestBody AdicionarTarefaAProjetoDTO tarefa) {
+        Optional<Projeto> optionalProjeto = projetoService.adicionarTarefa(idProjeto, tarefa.converter());
         return optionalProjeto.map(projeto -> ResponseEntity.ok(converterProjetoParaDTO.converter(projeto))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
 
-
     // GET /projeto/{idProjeto}/estadoDescritivo
     @GetMapping("/{idProjeto}/estadoDescritivo")
-    public ResponseEntity<EstadoDescritivoProjetoDTO> getEstadoDescritivoProjeto(@PathVariable Long idProjeto){
-        Optional<Projeto> optionalProjeto=projetoService.findById(idProjeto);
+    public ResponseEntity<EstadoDescritivoProjetoDTO> getEstadoDescritivoProjeto(@PathVariable Long idProjeto) {
+        Optional<Projeto> optionalProjeto = projetoService.findById(idProjeto);
         return optionalProjeto.map(projeto -> {
-            EstadoDescritivoProjetoDTO responseDTO =converterProjetoParaEDTO.converter(projeto);
+            EstadoDescritivoProjetoDTO responseDTO = converterProjetoParaEDTO.converter(projeto);
             return ResponseEntity.ok(responseDTO);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
-
     //GET /projeto/{idProjeto}/estado
     @GetMapping("/{idProjeto}/estado")
-    public ResponseEntity<EstadoResponseDTO> getEstadoProjeto(@PathVariable Long idProjeto){
+    public ResponseEntity<EstadoResponseDTO> getEstadoProjeto(@PathVariable Long idProjeto) {
         Optional<Estado> optionalEstado = projetoService.getEstadoProjeto(idProjeto);
         return optionalEstado.map(estado -> {
             EstadoResponseDTO responseDTO = converterEstadoParaDTO.converter(estado);
@@ -69,10 +67,9 @@ public class ProjetoController {
     }
 
 
-
     //GET /projeto/{idProjeto}/valor
     @GetMapping("/{idProjeto}/valor")
-    public ResponseEntity<CustoResponseDTO> getCustoProjeto(@PathVariable Long idProjeto){
+    public ResponseEntity<CustoResponseDTO> getCustoProjeto(@PathVariable Long idProjeto) {
         Optional<Double> optionalCusto = projetoService.getCustoProjeto(idProjeto);
         return optionalCusto.map(custo -> {
             CustoResponseDTO responseDTO = converterCustoParaDTO.converter(custo);
@@ -83,7 +80,7 @@ public class ProjetoController {
 
     //GET /projeto/{idProjeto}/duracao
     @GetMapping("/{idProjeto}/duracao")
-    public ResponseEntity<DuracaoResponseDTO> getDuracaoProjeto(@PathVariable Long idProjeto){
+    public ResponseEntity<DuracaoResponseDTO> getDuracaoProjeto(@PathVariable Long idProjeto) {
         Optional<Integer> optionalDuracao = projetoService.getDuracaoProjeto(idProjeto);
         return optionalDuracao.map(duracao -> {
             DuracaoResponseDTO responseDTO = converterDuracaoParaDTO.converter(duracao);

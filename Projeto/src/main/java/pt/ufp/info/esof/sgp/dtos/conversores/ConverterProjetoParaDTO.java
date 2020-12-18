@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class ConverterProjetoParaDTO implements Conversor<ProjetoResponseDTO, Projeto> {
     @Override
     public ProjetoResponseDTO converter(Projeto projeto) {
-        ProjetoResponseDTO responseDTO=new ProjetoResponseDTO();
+        ProjetoResponseDTO responseDTO = new ProjetoResponseDTO();
         responseDTO.setNome(projeto.getNome());
 
         ClienteDTO clienteDTO = new ClienteDTO();
@@ -19,7 +19,7 @@ public class ConverterProjetoParaDTO implements Conversor<ProjetoResponseDTO, Pr
 
 
         responseDTO.setTarefas(projeto.getTarefas().stream().map(tarefa -> {
-            TarefaCreateDTO tarefaDTO=new TarefaCreateDTO();
+            TarefaCreateDTO tarefaDTO = new TarefaCreateDTO();
 
             tarefaDTO.setDuracaoEstimada(tarefa.getDuracaoEstimada());
             tarefaDTO.setDescricao(tarefa.getDescricao());

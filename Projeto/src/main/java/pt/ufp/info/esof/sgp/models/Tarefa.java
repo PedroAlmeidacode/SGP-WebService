@@ -29,7 +29,7 @@ public class Tarefa {
     private String titulo;
     private String descricao;
     @ManyToOne
-    private  Projeto projeto;
+    private Projeto projeto;
     @ManyToOne
     private Empregado empregado;
     @OneToOne(cascade = CascadeType.ALL)
@@ -131,7 +131,7 @@ public class Tarefa {
     }
 
 
-    public void setTempoDedicadoEmTarefaAtual(int tempo){
+    public void setTempoDedicadoEmTarefaAtual(int tempo) {
         int tempoAtual = this.getTarefaAtual().getTempoDedicado();
         // adicionar mais o tempo
         this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
