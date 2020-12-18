@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pt.ufp.info.esof.sgp.models.Cliente;
 import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.Tarefa;
+import pt.ufp.info.esof.sgp.models.enums.Estado;
 import pt.ufp.info.esof.sgp.repositories.ClienteRepository;
 import pt.ufp.info.esof.sgp.repositories.ProjetoRepository;
 import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
@@ -78,5 +79,38 @@ public class ProjetoServiceImpl implements ProjetoService{
         return projetoRepository.findById(idProjeto);
     }
 
+    @Override
+    public Optional<Estado> getEstadoProjeto(Long idProjeto) {
+        Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
+        if(optionalProjeto.isPresent()){
+            Projeto projeto=optionalProjeto.get();
+            return Optional.of(projeto.calcularEstado());
+        }
+        // projeto nao existe
+        return Optional.empty();
+    }
+
+
+    @Override
+    public Optional<Double> getCustoProjeto(Long idProjeto) {
+        Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
+        if(optionalProjeto.isPresent()){
+            Projeto projeto=optionalProjeto.get();
+            return Optional.of(projeto.calcularCusto());
+        }
+        // projeto nao existe
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Integer> getDuracaoProjeto(Long idProjeto) {
+        Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
+        if(optionalProjeto.isPresent()){
+            Projeto projeto=optionalProjeto.get();
+            return Optional.of(projeto.calcularDuracao());
+        }
+        // projeto nao existe
+        return Optional.empty();
+    }
 
 }

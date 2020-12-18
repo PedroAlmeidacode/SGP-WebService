@@ -35,6 +35,7 @@ public class TarefaController {
         return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+
     @PatchMapping("/{idTarefa}/percentualConclusao")
     public ResponseEntity<TarefaResponseDTO> adicionaPercentualTarefa(@PathVariable Long idTarefa, @RequestBody PercentualTarefaDTO percentual)
     {
@@ -50,3 +51,4 @@ public class TarefaController {
     }
 
 }
+

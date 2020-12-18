@@ -3,6 +3,12 @@ package pt.ufp.info.esof.sgp.services;
 import org.springframework.stereotype.Service;
 import pt.ufp.info.esof.sgp.dtos.PercentualTarefaDTO;
 import pt.ufp.info.esof.sgp.models.*;
+
+import pt.ufp.info.esof.sgp.models.Cliente;
+import pt.ufp.info.esof.sgp.models.Empregado;
+import pt.ufp.info.esof.sgp.models.Projeto;
+import pt.ufp.info.esof.sgp.models.Tarefa;
+
 import pt.ufp.info.esof.sgp.repositories.ClienteRepository;
 import pt.ufp.info.esof.sgp.repositories.EmpregadoRepository;
 import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
@@ -10,7 +16,7 @@ import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
 import java.util.Optional;
 
 @Service
-public class TarefaServiceImpl implements TarefaService{
+public class TarefaServiceImpl implements TarefaService {
 
     private final TarefaRepository tarefaRepository;
     private final EmpregadoRepository empregadoRepository;
@@ -22,8 +28,8 @@ public class TarefaServiceImpl implements TarefaService{
 
     @Override
     public Optional<Tarefa> createTarefa(Tarefa tarefa) {
-        Optional<Tarefa> optionalTarefa=tarefaRepository.findByTitulo(tarefa.getTitulo());
-        if(optionalTarefa.isEmpty()){
+        Optional<Tarefa> optionalTarefa = tarefaRepository.findByTitulo(tarefa.getTitulo());
+        if (optionalTarefa.isEmpty()) {
             return Optional.of(tarefaRepository.save(tarefa));
         }
         return Optional.empty();
@@ -34,14 +40,14 @@ public class TarefaServiceImpl implements TarefaService{
     public Optional<Tarefa> adicionarEmpregado(Long idTarefa, Empregado empregado) {
         Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
 
-        if(optionalTarefa.isPresent()){
+        if (optionalTarefa.isPresent()) {
             Tarefa tarefa = optionalTarefa.get();
 
             Optional<Empregado> optionalEmpregado = empregadoRepository.findById(empregado.getId());
-            if(optionalEmpregado.isPresent()) {
+            if (optionalEmpregado.isPresent()) {
                 Empregado e = optionalEmpregado.get();
                 // se o empregado ja nao contiver a tarefa e se a tarefa nao contiver empregado atribuido
-                if(!e.getTarefas().contains(tarefa) && tarefa.getEmpregado() == null) {
+                if (!e.getTarefas().contains(tarefa) && tarefa.getEmpregado() == null) {
                     // associacao entre os dois em models e criacao de tarefa atual entre outros
                     e.adicionarTarefa(tarefa);
                     empregadoRepository.save(e);
@@ -52,7 +58,10 @@ public class TarefaServiceImpl implements TarefaService{
             return Optional.empty();
         }
         // nao tem tarefa com o id passado
-        return Optional.empty();    }
+        return Optional.empty();
+    }
+
+
 
     @Override
     public Optional<Tarefa> adicionarPercentualTarefa(Long idTarefa,Float percentual) {

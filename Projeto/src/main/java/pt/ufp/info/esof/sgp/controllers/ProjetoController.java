@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pt.ufp.info.esof.sgp.dtos.*;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterProjetoParaDTO;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterProjetoParaEstadoDescritivoDTO;
+import pt.ufp.info.esof.sgp.dtos.conversores.*;
 import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 import pt.ufp.info.esof.sgp.services.ProjetoService;
@@ -21,6 +22,9 @@ public class ProjetoController {
     private final ProjetoService projetoService;
     private final ConverterProjetoParaDTO converterProjetoParaDTO = new ConverterProjetoParaDTO();
     private final ConverterProjetoParaEstadoDescritivoDTO converterProjetoParaEDTO = new ConverterProjetoParaEstadoDescritivoDTO();
+    private final ConverterEstadoParaDTO converterEstadoParaDTO = new ConverterEstadoParaDTO();
+    private final ConverterCustoParaDTO converterCustoParaDTO = new ConverterCustoParaDTO();
+    private final ConverterDuracaoParaDTO converterDuracaoParaDTO = new ConverterDuracaoParaDTO();
 
     public ProjetoController(ProjetoService projetoService) {
         this.projetoService = projetoService;
@@ -56,13 +60,34 @@ public class ProjetoController {
 
     //GET /projeto/{idProjeto}/estado
     @GetMapping("/{idProjeto}/estado")
-    public ResponseEntity<Estado> getEstadoProjeto(@PathVariable Long idProjeto){
-        Optional<Projeto> optionalProjeto=projetoService.findById(idProjeto);
-        return optionalProjeto.map(projeto -> {
-            // usa metodo de models
-            // TODO usar metodo aqui ou em service method
-            Estado estado = projeto.calcularEstado();
-            return ResponseEntity.ok(estado);
+    public ResponseEntity<EstadoResponseDTO> getEstadoProjeto(@PathVariable Long idProjeto){
+        Optional<Estado> optionalEstado = projetoService.getEstadoProjeto(idProjeto);
+        return optionalEstado.map(estado -> {
+            EstadoResponseDTO responseDTO = converterEstadoParaDTO.converter(estado);
+            return ResponseEntity.ok(responseDTO);
+        }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+
+    //GET /projeto/{idProjeto}/valor
+    @GetMapping("/{idProjeto}/valor")
+    public ResponseEntity<CustoResponseDTO> getCustoProjeto(@PathVariable Long idProjeto){
+        Optional<Double> optionalCusto = projetoService.getCustoProjeto(idProjeto);
+        return optionalCusto.map(custo -> {
+            CustoResponseDTO responseDTO = converterCustoParaDTO.converter(custo);
+            return ResponseEntity.ok(responseDTO);
+        }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+    //GET /projeto/{idProjeto}/duracao
+    @GetMapping("/{idProjeto}/duracao")
+    public ResponseEntity<DuracaoResponseDTO> getDuracaoProjeto(@PathVariable Long idProjeto){
+        Optional<Integer> optionalDuracao = projetoService.getDuracaoProjeto(idProjeto);
+        return optionalDuracao.map(duracao -> {
+            DuracaoResponseDTO responseDTO = converterDuracaoParaDTO.converter(duracao);
+            return ResponseEntity.ok(responseDTO);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

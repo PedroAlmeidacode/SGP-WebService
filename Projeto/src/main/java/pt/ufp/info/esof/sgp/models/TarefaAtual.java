@@ -33,6 +33,7 @@ public class TarefaAtual {
         setUltimaAtualizacaoParaAgora();
     }
 
+
     public void setUltimaAtualizacaoParaAgora(){
         this.ultimaAtualizacao = LocalDateTime.now();
     }

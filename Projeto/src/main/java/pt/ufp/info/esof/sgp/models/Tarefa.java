@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Lazy;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 // TODO atualizar UML
@@ -43,7 +44,7 @@ public class Tarefa {
      */
     protected double getCustoTarefa() {
         // se nao tiver empregado atribuido a tarefa
-        if (this.empregado == null) return 0;
+        if (this.empregado.getCargo() == null) return 0;
         switch (this.empregado.getCargo()) {
             // analista junior ganha 20 euros a hora = 20/60 = 0.3(3)euros ao minuto
             case ANALISTA_JUNIOR:
@@ -136,17 +137,5 @@ public class Tarefa {
         this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
     }
 
-    @Override
-    public String toString() {
-        return "Tarefa{" +
-                "id=" + id +
-                ", duracaoEstimada=" + duracaoEstimada +
-                ", dataIniciacao=" + dataIniciacao +
-                ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", projeto=" + projeto +
-                ", empregado=" + empregado +
-                ", tarefaAtual=" + tarefaAtual +
-                '}';
-    }
+
 }

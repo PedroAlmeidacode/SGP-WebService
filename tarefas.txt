@@ -1,0 +1,280 @@
+• POST /tarefa
+createTarefa()
+
+recebe:
+TarefaCreateDTO implements CreateDTO<Tarefa>{
+    private int duracaoEstimada;
+    private String titulo;
+    private String descricao;
+	
+envia:
+TarefaResponseDTO {
+    private int duracaoEstimada;
+    private String titulo;
+    private String descricao;
+
+
+
+
+
+
+
+
+
+
+• POST /projeto
+createProjeto()
+
+recebe:
+ProjetoCreateDTO implements CreateDTO<Projeto>{
+    private String nome;
+    private Long clienteId;
+
+envia:
+ProjetoResponseDTO {
+    private String nome;
+    private ClienteDTO cliente;
+    		
+    		ClienteDTO {
+    			private String email;}
+
+
+
+
+
+
+
+
+
+
+• POST /empregado
+createEmpregado()
+
+
+recebe:
+EmpregadoCreateDTO implements CreateDTO<Empregado> {
+
+	private String nome;
+    private Cargo cargo;
+    private String email;
+
+envia:
+EmpregadoResponseDTO {
+	
+	private String nome;
+    private String email;
+    private Cargo cargo;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+• PATCH /projeto/tarefa/{idProjeto}
+adicionaTarefaAProjeto()
+
+
+recebe: 
+idProjeto
+AdicionarTarefaAProjetoDTO
+AdicionarTarefaAProjetoDTO implements CreateDTO<Tarefa> {
+
+    private Long idTarefa;
+
+
+envia:
+ProjetoResponseDTO {
+    private String nome;
+    private ClienteDTO cliente;
+    private List<TarefaDTO> tarefas = new ArrayList<>();
+				TarefaDTO {
+    				private int duracaoEstimada; // minutos estimados, tem que ser expressa em minutos
+    				private String titulo;
+    				private String descricao;
+
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+[A FAZER ////]
+{Meida}
+• PATCH /tarefa/empregado/{idTarefa}
+adicionaEmpregadoATarefa()
+
+
+recebe: 
+idTarefa
+AdicionarEmpregadoATarefaDTO -> parecido com o AdicionarTarefaAProjetoDTO
+AdicionarEmpregadoATarefaDTO implements CreateDTO<Tarefa> {
+
+    private Long idEmpregado;
+
+
+envia:
+TarefaResponseDTO {
+    private int duracaoEstimada;
+    private String titulo;
+    private String descricao;
+    private List<EmpregadoCreateDTO> empregados = new ArrayList<>();
+    			EmpregadoCreateDTO implements CreateDTO<Empregado> {
+					private String nome;
+    				private Cargo cargo;
+    				private String email;
+
+
+
+ex:
+  public void atribuirEmpregadoaTarefa(Empregado empregado) {
+        // inciacada a data de inciciacao da tarefa
+        this.dataIniciacao = LocalDateTime.now();
+        // criada a tarefa atual
+        this.tarefaAtual = new TarefaAtual();
+        // colocar a ultima atualizacao como a data presente
+        this.tarefaAtual.setUltimaAtualizacao(LocalDateTime.now());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{Hugo}
+
+
+• GET /projeto/{idProjeto}/valor
+getCustoProjeto()
+
+recebe:
+idProjeto
+
+envia:
+double da funcao models.Projeto.calcularCusto()
+
+
+
+
+
+
+
+
+{Hugo}
+
+
+• GET /projeto/{idProjeto}/tempo
+getCustoProjeto()
+
+recebe:
+idProjeto
+
+envia:
+int da funcao models.Projeto.calcularDuracao()
+
+
+
+
+{Meida}
+
+• GET /projeto/{idProjeto}/estadoGeral
+getEstadoGeralProjeto()
+
+recebe:
+idProjeto
+
+envia:
+EstadoGeralProjetoDTO
+este inclui estado de cada tarefa atual de cada tarefa 
+
+
+
+
+
+
+
+{Meida}
+
+
+• GET /projeto/{idProjeto}/estado
+getEstadoProjeto()
+
+recebe:
+idProjeto
+
+envia:
+enum ESTADO models.Projeto.calcularEstado() 
+
+
+
+
+
+
+{Rolotes}
+
+• PATCH /tarefa/{idtarefa}/percentualConclusao
+setPercentualConclusaoTarefa()
+
+recebe:
+idTarefa
+percentualConclusao (float 0-100)
+
+
+envia:
+TarefaResponseDTO
+
+
+
+
+
+
+
+
+
+{Rolotes}
+
+
+• PATCH /tarefa/{idtarefa}/tempoDedicado
+setTempoDedicado()
+
+recebe:
+idTarefa
+tempoDedicado (int)
+
+envia:
+TarefaResponseDTO
+
+
+
+
+
+
+
+
