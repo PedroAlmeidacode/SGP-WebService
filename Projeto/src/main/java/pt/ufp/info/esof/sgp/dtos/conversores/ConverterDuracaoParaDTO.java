@@ -3,6 +3,9 @@ package pt.ufp.info.esof.sgp.dtos.conversores;
 import pt.ufp.info.esof.sgp.dtos.responses.DuracaoResponseDTO;
 
 public class ConverterDuracaoParaDTO implements Conversor<DuracaoResponseDTO, Integer> {
+
+
+
     @Override
     public DuracaoResponseDTO converter(Integer duracao) {
         System.out.println(duracao);

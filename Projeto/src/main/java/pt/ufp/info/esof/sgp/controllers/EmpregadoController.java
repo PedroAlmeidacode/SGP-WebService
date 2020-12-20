@@ -28,13 +28,6 @@ public class EmpregadoController {
     }
 
 
-    @GetMapping()
-    public ResponseEntity<Iterable<EmpregadoCreateDTO>> getAllEmpregado() {
-        List<EmpregadoCreateDTO> responseDTOS = new ArrayList<>();
-        empregadoService.findAll().forEach(empregado -> responseDTOS.add(converterEmpregadoParaDTO.converter(empregado)));
-        return ResponseEntity.ok(responseDTOS);
-    }
-
 
     @PostMapping
     public ResponseEntity<EmpregadoCreateDTO> createEmpregado(@RequestBody EmpregadoCreateDTO empregado) {

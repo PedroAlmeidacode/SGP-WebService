@@ -38,6 +38,7 @@ public class ProjetoController {
         return optionalExplicador.map(value -> ResponseEntity.ok(converterProjetoParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+    // TODO ver response entity notfound or badrequest
 
     // PATCH /projeto/tarefa/{idProjeto}
     @PatchMapping("/tarefa/{idProjeto}")
