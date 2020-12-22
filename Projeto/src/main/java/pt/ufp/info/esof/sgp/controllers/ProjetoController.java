@@ -38,7 +38,6 @@ public class ProjetoController {
         return optionalExplicador.map(value -> ResponseEntity.ok(converterProjetoParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    // TODO ver response entity notfound or badrequest
 
     // PATCH /projeto/tarefa/{idProjeto}
     @PatchMapping("/tarefa/{idProjeto}")
@@ -71,7 +70,7 @@ public class ProjetoController {
 
 
     //GET /projeto/{idProjeto}/valor
-    @GetMapping("/{idProjeto}/valor")
+    @GetMapping("/{idProjeto}/custo")
     public ResponseEntity<CustoResponseDTO> getCustoProjeto(@PathVariable Long idProjeto) {
         Optional<Double> optionalCusto = projetoService.getCustoProjeto(idProjeto);
         return optionalCusto.map(custo -> {

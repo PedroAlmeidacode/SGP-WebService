@@ -33,15 +33,17 @@ public class ProjetoServiceImpl implements ProjetoService {
                 // faz a associacao
                 cliente.adicionaProjeto(projeto);
                 clienteRepository.save(optionalCliente.get());
+            }else {
+                //quando o cliente nao existe na base de dados
+                return Optional.empty();
             }
             return Optional.of(projeto);
 
         }
+        // quando o projeto a criar ja existe com o nome
         return Optional.empty();
     }
 
-    // TODO resolver porblema de duplicacao em criacao de projeto
-    // TODO ver se tarefa ja esta atribuida a outro projeto ao adicionar tarefa a projeto
 
 
     @Override

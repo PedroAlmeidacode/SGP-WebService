@@ -85,7 +85,6 @@ class ProjetoTest {
 
 
 
-        // TODO fazer mais testes de forma cobrir todas as linhas do metodo
     }
 
     @Test

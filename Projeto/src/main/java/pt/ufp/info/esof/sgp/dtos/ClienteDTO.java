@@ -6,3 +6,4 @@ import lombok.Data;
 public class ClienteDTO {
     private String email;
 }
+// TODO eliminar este dto depois de substituir em projetoresponseDTO pora emailCliente
