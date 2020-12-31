@@ -54,32 +54,42 @@ class ProjetoTest {
         empregado.setCargo(Cargo.ANALISTA_JUNIOR);
         empregado1.setCargo(Cargo.DES_SENIOR);
 
-        tarefa.atribuirEmpregadoaTarefa(empregado);
-        tarefa2.atribuirEmpregadoaTarefa(empregado);
-        tarefa3.atribuirEmpregadoaTarefa(empregado1);
+
+        empregado.adicionarTarefa(tarefa);
+        empregado.adicionarTarefa(tarefa2);
+        empregado1.adicionarTarefa(tarefa3);
+
 
         projeto.getTarefas().add(tarefa);
         projeto.getTarefas().add(tarefa2);
         projeto.getTarefas().add(tarefa3);
 
-        assertEquals(projeto.calcularCusto(), 860);
+        double custo = projeto.calcularCusto();
+        assertEquals(custo, 860);
 
 
 
 
         // projeto sem tarefas deve retonrar 0 de custo
         Projeto projeto1 = new Projeto();
-        assertEquals(projeto1.calcularCusto(), 0);
+        double custo1 = projeto1.calcularCusto();
+
+        assertEquals(custo1, 0);
 
 
 
-        // proejto com duas tarefas de duracao estimada 0 deve retornar 0
+        // projeto com duas tarefas de duracao estimada 0 deve retornar 0
+        Projeto projeto2 = new Projeto();
+
         Tarefa tarefa1 = new Tarefa();
         Tarefa tarefa4 = new Tarefa();
         // e obrigatorio atrbuir empregados a tarefa senao da erro
-        projeto1.getTarefas().add(tarefa1);
-        projeto1.getTarefas().add(tarefa4);
-        assertEquals(projeto1.calcularCusto(), 0);
+        projeto2.getTarefas().add(tarefa1);
+        projeto2.getTarefas().add(tarefa4);
+
+        double custo2 = projeto2.calcularCusto();
+
+        assertEquals(custo2, 0);
 
 
 
@@ -147,6 +157,52 @@ class ProjetoTest {
 
         assertEquals(Estado.NORMAL, projeto.calcularEstado());
 
-        // TODO teste calcular estado - fazer mais testes para cobir mais linhas do metodo
+
+        Projeto projeto1 = new Projeto();
+        projeto1.getTarefas().add(tarefa3);
+        assertEquals(Estado.ADIANTADA, projeto1.calcularEstado());
+
+
+
+        Projeto projeto2 = new Projeto();
+        projeto2.getTarefas().add(tarefa2);
+        assertEquals(Estado.ATRASADA, projeto2.calcularEstado());
+
+
+
+        // projeto sem tarefas submetidas
+        Projeto projeto3 = new Projeto();
+        assertEquals(Estado.SEM_TAREFAS_SUBMETIDAS, projeto3.calcularEstado());
+
+        // projeto concluido
+        Projeto projeto4 = new Projeto();
+
+        Tarefa tarefa5 = new Tarefa();
+        tarefa5.atribuirEmpregadoaTarefa(empregado);
+        // duaracao estimada = 1000 min
+        tarefa5.setDuracaoEstimada(1000);
+        // percentual de conclusao = 50
+        tarefa5.getTarefaAtual().setPercentualConclusao(100);
+        // esperado um estado de tarefa adiantada visto que conclui mais do que o tempo que usou
+        tarefa5.getTarefaAtual().setTempoDedicado(400);
+
+        projeto4.getTarefas().add(tarefa5);
+        assertEquals(Estado.CONCLUIDA, projeto4.calcularEstado());
+
+    }
+
+
+    @Test
+    void adicionarTarefaTest() {
+        Projeto projeto = new Projeto();
+        Tarefa tarefa = new Tarefa();
+
+        // no caso normal
+        projeto.adicionarTarefa(tarefa);
+        assertEquals(projeto.getTarefas().size(),1);
+
+        // nao resulta pois ja contem a tarefa
+        projeto.adicionarTarefa(tarefa);
+        assertEquals(projeto.getTarefas().size(),1);
     }
 }

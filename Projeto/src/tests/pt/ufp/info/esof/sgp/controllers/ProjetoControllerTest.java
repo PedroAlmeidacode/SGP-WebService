@@ -34,7 +34,6 @@ class ProjetoControllerTest {
     @Test
     void createProjeto() throws Exception {
 
-        // TODO not working
 
         // teste normal
         // objeto esperado pelo metodo do servico
@@ -71,7 +70,7 @@ class ProjetoControllerTest {
 
     @Test
     void adicionaTarefaAProjeto() throws Exception {
-        // TODO fazer este
+        // TODO not working
         Projeto projeto = new Projeto();
         projeto.setId(1L);
         projeto.setNome("projeto1");

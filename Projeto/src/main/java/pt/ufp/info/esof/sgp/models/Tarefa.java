@@ -44,7 +44,7 @@ public class Tarefa {
      */
     protected double getCustoTarefa() {
         // se nao tiver empregado atribuido a tarefa
-        if (this.empregado.getCargo() == null) return 0;
+        if (this.empregado == null || this.empregado.getCargo() == null) return 0;
         switch (this.empregado.getCargo()) {
             // analista junior ganha 20 euros a hora = 20/60 = 0.3(3)euros ao minuto
             case ANALISTA_JUNIOR:
@@ -131,10 +131,14 @@ public class Tarefa {
     }
 
 
+
     public void setTempoDedicadoEmTarefaAtual(int tempo) {
-        int tempoAtual = this.getTarefaAtual().getTempoDedicado();
-        // adicionar mais o tempo
-        this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+        if(tempo > 0 ){
+            int tempoAtual = this.getTarefaAtual().getTempoDedicado();
+            // adicionar mais o tempo
+            this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+
+        }
     }
 
 
