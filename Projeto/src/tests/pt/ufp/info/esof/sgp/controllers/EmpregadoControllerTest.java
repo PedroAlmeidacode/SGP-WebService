@@ -40,19 +40,17 @@ class EmpregadoControllerTest {
         // quando chamarmos o metodo queremos que retorne optional empregado
         when(this.empregadoService.createEmpregado(empregado)).thenReturn(Optional.of(empregado));
 
-
         String empregadoAsJsonString=new ObjectMapper().writeValueAsString(empregado);
 
         // teste de criar um novo empregado
         mockMvc.perform(post("/empregado").content(empregadoAsJsonString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
+        when(this.empregadoService.createEmpregado(empregado)).thenReturn(Optional.empty());
         Empregado empregadoExistente = new Empregado();
         empregadoExistente.setEmail("hugo123@gmail.com");
         String empregadoExistenteAsJsonString=new ObjectMapper().writeValueAsString(empregadoExistente);
 
-
         // teste de bad request pois empregado ja existe
         mockMvc.perform(post("/empregado").content(empregadoExistenteAsJsonString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
-
     }
 }

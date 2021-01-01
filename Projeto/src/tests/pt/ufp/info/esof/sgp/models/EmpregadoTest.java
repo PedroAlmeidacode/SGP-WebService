@@ -12,7 +12,7 @@ class EmpregadoTest {
         // teste caso primeira insercao de tempo na tarefa
         Empregado empregado = new Empregado();
         Tarefa tarefa = new Tarefa();
-        tarefa.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa);
         // 180 min = 3 horas
         empregado.incluirTempoDedicado(tarefa, 180);
         assertEquals(180, tarefa.getTarefaAtual().getTempoDedicado());

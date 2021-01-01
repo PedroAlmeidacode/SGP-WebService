@@ -1,6 +1,7 @@
 package pt.ufp.info.esof.sgp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.Lazy;
@@ -16,12 +17,11 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Tarefa {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int duracaoEstimada; // minutos estimados, tem que ser expressa em minutos
     // inicializada ao atribuir um empregado a tarefa
     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm",shape = JsonFormat.Shape.STRING)

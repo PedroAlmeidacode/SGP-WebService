@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 public class Projeto {
 
 

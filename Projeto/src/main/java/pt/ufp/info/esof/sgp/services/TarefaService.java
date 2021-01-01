@@ -10,7 +10,7 @@ public interface TarefaService {
 
     Optional<Tarefa> createTarefa(Tarefa converter);
 
-    Optional<Tarefa> adicionarEmpregado(Long idTarefa, Empregado converter);
+    Optional<Tarefa> adicionarEmpregado(Long idTarefa, Long idEmpregado);
 
     Optional<Tarefa> adicionarPercentualTarefa(Long idTarefa, Float percentual);
 
