@@ -8,6 +8,4 @@ import java.util.Optional;
 public interface EmpregadoService {
 
     Optional<Empregado> createEmpregado(Empregado converter);
-
-    List<Empregado> findAll();
 }
