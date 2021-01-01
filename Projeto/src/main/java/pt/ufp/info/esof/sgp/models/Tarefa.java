@@ -1,14 +1,10 @@
 package pt.ufp.info.esof.sgp.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.Lazy;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 import javax.persistence.*;
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 // TODO atualizar UML
