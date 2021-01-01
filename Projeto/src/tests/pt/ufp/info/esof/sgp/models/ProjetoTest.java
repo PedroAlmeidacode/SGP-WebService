@@ -105,7 +105,7 @@ class ProjetoTest {
         //TAREFA ESTADO NORMAL
         Tarefa tarefa = new Tarefa();
         Empregado empregado = new Empregado();
-        tarefa.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa);
         // duaracao estimada = 1000 min
         tarefa.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -116,7 +116,7 @@ class ProjetoTest {
 
         //TAREFA ESTADO NORMAL
         Tarefa tarefa1 = new Tarefa();
-        tarefa1.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa1);
         // duaracao estimada = 1000 min
         tarefa1.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -128,7 +128,7 @@ class ProjetoTest {
 
         //TAREFA ESTADO ATRASADA
         Tarefa tarefa2 = new Tarefa();
-        tarefa2.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa2);
         // duaracao estimada = 1000 min
         tarefa2.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -140,7 +140,7 @@ class ProjetoTest {
 
         //TAREFA ESTADO ADIANTADA
         Tarefa tarefa3 = new Tarefa();
-        tarefa3.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa3);
         // duaracao estimada = 1000 min
         tarefa3.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -178,7 +178,7 @@ class ProjetoTest {
         Projeto projeto4 = new Projeto();
 
         Tarefa tarefa5 = new Tarefa();
-        tarefa5.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa5);
         // duaracao estimada = 1000 min
         tarefa5.setDuracaoEstimada(1000);
         // percentual de conclusao = 50

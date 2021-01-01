@@ -32,7 +32,7 @@ public class Empregado extends Utilizador {
             tarefas.add(tarefa);
             tarefa.setEmpregado(this);
             //cria tarefa atual
-            tarefa.atribuirEmpregadoaTarefa(this);
+            tarefa.setLocalDates();
         }
     }
 }

@@ -58,26 +58,25 @@ public class Tarefa {
             // analista senior ganha 80 euros a hora = 80/60 = 1.3(3)euros ao minuto
             case ANLISTA_SENIOR:
                 return this.duracaoEstimada * (80.00 / 60);
-            // caso nao haja cargo atribuido a este empregado
-            default:
-                return 0;
+
         }
+        return 0;
     }
 
 
     /**
      * atribui tambem a data atual a tarefa como data de inciacao
-     * atribui esta tarefa na lista de tarefas de empregado
      *
-     * @param empregado atrbuido a esta tarefa
+     *
+     *  Este metodo e chamado pelo metodo em empregado e nao deve ser chamado isolado
      */
-    public void atribuirEmpregadoaTarefa(Empregado empregado) {
+    public void setLocalDates() {
         // inciacada a data de inciciacao da tarefa
         this.dataIniciacao = LocalDateTime.now();
         // criada a tarefa atual
         this.tarefaAtual = new TarefaAtual();
         // colocar a ultima atualizacao como a data presente
-        this.tarefaAtual.setUltimaAtualizacao(LocalDateTime.now());
+        this.tarefaAtual.setUltimaAtualizacaoParaAgora();
     }
 
 
@@ -132,6 +131,8 @@ public class Tarefa {
 
 
 
+    // nao testamos se a tarefa atual existe pois por esta altura o empregado ja foi adicionado a tarefa
+    // logo a tarefa atual ja foi criada
     public void setTempoDedicadoEmTarefaAtual(int tempo) {
         if(tempo > 0 ){
             int tempoAtual = this.getTarefaAtual().getTempoDedicado();

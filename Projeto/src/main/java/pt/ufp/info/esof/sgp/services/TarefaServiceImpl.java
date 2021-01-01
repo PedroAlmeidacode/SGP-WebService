@@ -76,6 +76,9 @@ public class TarefaServiceImpl implements TarefaService {
         Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
         if (optionalTarefa.isPresent()) {
             Tarefa tarefa = optionalTarefa.get();
+            // nao fazemos testes a nao existencias de tarefaatual pois nesta altura
+            TarefaAtual tarefaAtual = tarefa.getTarefaAtual();   //vai buscar a atual da tarefa
+            // assumimos que neste altura a tarefa atual ja existe pois o empregado ja foi adicionado a tarefa
             tarefa.setTempoDedicadoEmTarefaAtual(tempoDedicado);
             return Optional.of(tarefaRepository.save(tarefa));
         }
