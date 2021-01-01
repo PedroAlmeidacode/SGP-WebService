@@ -27,18 +27,16 @@ public class TarefaAtual {
      *                            deste projeto
      */
     public void setPercentualConclusao(float percentualConclusao) {
-        this.percentualConclusao = percentualConclusao;
-        // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
-        // passa a ser a data atual
-        setUltimaAtualizacaoParaAgora();
+        if(percentualConclusao >= 0 && percentualConclusao <= 100 ) {
+            this.percentualConclusao = percentualConclusao;
+            // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
+            // passa a ser a data atual
+            setUltimaAtualizacaoParaAgora();
+        }
     }
 
 
     public void setUltimaAtualizacaoParaAgora() {
         this.ultimaAtualizacao = LocalDateTime.now();
-    }
-
-    public void adicionarTempoDedicado(int tempoDedicado) {
-        this.tempoDedicado += tempoDedicado;
     }
 }

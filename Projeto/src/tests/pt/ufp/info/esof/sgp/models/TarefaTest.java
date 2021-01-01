@@ -1,7 +1,10 @@
 package pt.ufp.info.esof.sgp.models;
 
 import org.junit.jupiter.api.Test;
+import pt.ufp.info.esof.sgp.models.enums.Cargo;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,12 +12,47 @@ class TarefaTest {
 
     @Test
     void testGetCustoTarefa() {
-        // TODO teste do metodo getCustoTarefa
+        // empregado nao existe
+        Tarefa tarefa = new Tarefa();
+        assertEquals(tarefa.getCustoTarefa(),0);
+
+        // empregado nao tem cargo atribuido
+        Empregado empregado = new Empregado();
+        empregado.adicionarTarefa(tarefa);
+        assertEquals(tarefa.getCustoTarefa(),0);
+
+        // caso normal Analista_junior
+        tarefa.setDuracaoEstimada(60);
+        empregado.setCargo(Cargo.ANALISTA_JUNIOR);
+        assertEquals(tarefa.getCustoTarefa(),20);
+
+        // caso normal Des_junior
+        empregado.setCargo(Cargo.DES_JUNIOR);
+        assertEquals(tarefa.getCustoTarefa(),10);
+
+        // caso normal Des_senior
+        empregado.setCargo(Cargo.DES_SENIOR);
+        assertEquals(tarefa.getCustoTarefa(),40);
+
+        // caso normal Analista_senior
+        empregado.setCargo(Cargo.ANLISTA_SENIOR);
+        assertEquals(tarefa.getCustoTarefa(),80);
+
+        // TODO return 0 not reached
     }
 
     @Test
-    void testAtribuirEmpregadoaTarefa() {
-        // TODO teste do metodo atribuirEmpregadoaTarefa
+    void TestsetLocalDates() {
+        Tarefa tarefa = new Tarefa();
+        tarefa.setTarefaAtual(new TarefaAtual());
+        LocalDateTime now = LocalDateTime.now();
+        tarefa.setDataIniciacao(now);
+        tarefa.getTarefaAtual().setUltimaAtualizacao(now);
+
+        // atualiza todas as datas para agora
+        tarefa.setLocalDates();
+        assertNotEquals(tarefa.getTarefaAtual().getUltimaAtualizacao(), now);
+        assertNotEquals(tarefa.getDataIniciacao(), now);
 
     }
 
@@ -23,7 +61,7 @@ class TarefaTest {
         // esperado um estado de tarefa normal
         Tarefa tarefa = new Tarefa();
         Empregado empregado = new Empregado();
-        tarefa.atribuirEmpregadoaTarefa(empregado);
+        empregado.adicionarTarefa(tarefa);
         // duaracao estimada = 1000 min
         tarefa.setDuracaoEstimada(1000);
         // percentual de conclusao = 50
@@ -73,7 +111,7 @@ class TarefaTest {
         // a tarefa nao foi concluida dentro da duracao estimada
 
         Empregado empregado1 = new Empregado();
-        tarefa1.atribuirEmpregadoaTarefa(empregado1);
+        empregado1.adicionarTarefa(tarefa1);
         // duaracao estimada = 100 min
         tarefa1.setDuracaoEstimada(100);
         tarefa1.getTarefaAtual().setPercentualConclusao(50);
@@ -86,7 +124,7 @@ class TarefaTest {
         // a ultima do gestor e depois do prazo previsto
         Tarefa tarefa2 = new Tarefa();
         Empregado empregado2 = new Empregado();
-        tarefa2.atribuirEmpregadoaTarefa(empregado2);
+        empregado2.adicionarTarefa(tarefa2);
         tarefa2.setDuracaoEstimada(100);
         tarefa2.getTarefaAtual().setTempoDedicado(50);
 
@@ -97,5 +135,21 @@ class TarefaTest {
         tarefa2.getTarefaAtual().setUltimaAtualizacao(tarefa2.getDataIniciacao().plusMinutes(110));
         assertEquals(Estado.ATRASADA, tarefa2.getEstadoTarefa());
 
+    }
+
+    @Test
+    void testsetTempoDedicadoEmTarefaAtual() {
+        // tempo negativo
+        Empregado empregado = new Empregado();
+        Tarefa tarefa = new Tarefa();
+        empregado.adicionarTarefa(tarefa);
+        tarefa.setTempoDedicadoEmTarefaAtual(-1);
+        assertNotEquals(tarefa.getTarefaAtual().getTempoDedicado(),-1);
+        // caso normal
+        tarefa.setTempoDedicadoEmTarefaAtual(28);
+        assertEquals(tarefa.getTarefaAtual().getTempoDedicado(), 28);
+        // caso mais 22 que da 50
+        tarefa.setTempoDedicadoEmTarefaAtual(22);
+        assertEquals(tarefa.getTarefaAtual().getTempoDedicado(), 50);
     }
 }

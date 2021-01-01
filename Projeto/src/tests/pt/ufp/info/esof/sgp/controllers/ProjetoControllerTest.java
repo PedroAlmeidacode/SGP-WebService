@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import pt.ufp.info.esof.sgp.dtos.creators.ProjetoCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.objectWithID.AdicionarTarefaAProjetoDTO;
 import pt.ufp.info.esof.sgp.models.Cliente;
 import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.services.ProjetoService;
@@ -16,8 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ProjetoController.class)
@@ -35,7 +34,6 @@ class ProjetoControllerTest {
     @Test
     void createProjeto() throws Exception {
 
-        // TODO not working
 
         // teste normal
         // objeto esperado pelo metodo do servico
@@ -45,30 +43,46 @@ class ProjetoControllerTest {
         cliente.setId(1L);
         projeto.setCliente(cliente);
 
-        // objeto enviado no post
-        ProjetoCreateDTO projetoDTO = new ProjetoCreateDTO();
-        projetoDTO.setNome(projeto.getNome());
-        // associa ao id 1
-        projetoDTO.setClienteId(projeto.getCliente().getId());
-
         // formato a enviar no post do objeto projetoDTO
-        String projetoAsJsonString=new ObjectMapper().writeValueAsString(projetoDTO);
+        String projetoAsJsonString=new ObjectMapper().writeValueAsString(projeto);
 
 
-        when(projetoService.createProjeto(projetoDTO.converter())).thenReturn(Optional.of(projeto));
+        when(projetoService.createProjeto(projeto)).thenReturn(Optional.of(projeto));
         // post de criacao de projeto: reponse ok
         mockMvc.perform(post("/projeto").content(projetoAsJsonString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
 
-        // TODO teste sem id de cliente
-        // TODO teste onde nome de projeto ja existe
+        // teste onde nome de projeto ja existe
+        Projeto projeto2 = new Projeto();
+        projeto2.setNome("projeto11");
+        Cliente cliente2 = new Cliente();
+        cliente2.setId(1L);
+        projeto2.setCliente(cliente2);
+        String projeto2AsJsonString=new ObjectMapper().writeValueAsString(projeto2);
+
+        when(projetoService.createProjeto(projeto2)).thenReturn(Optional.empty());
+
+        mockMvc.perform(post("/projeto").content(projeto2AsJsonString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest());
+
 
 
     }
 
     @Test
     void adicionaTarefaAProjeto() throws Exception {
-        // TODO fazer este
+        // TODO not working
+        Projeto projeto = new Projeto();
+        projeto.setId(1L);
+        projeto.setNome("projeto1");
+        AdicionarTarefaAProjetoDTO adicionarTarefaAProjetoDTO = new AdicionarTarefaAProjetoDTO();
+        adicionarTarefaAProjetoDTO.setIdTarefa(1L);
+
+        String tarefaAsJsonString=new ObjectMapper().writeValueAsString(adicionarTarefaAProjetoDTO);
+
+        when(projetoService.adicionarTarefa(1L,adicionarTarefaAProjetoDTO.converter())).thenReturn(Optional.of(projeto));
+
+        mockMvc.perform(patch("/projeto/tarefa/1").content(tarefaAsJsonString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
     }
 
     @Test

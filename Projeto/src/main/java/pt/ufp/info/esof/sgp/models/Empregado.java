@@ -24,20 +24,7 @@ public class Empregado extends Utilizador {
     private Cargo cargo;
     private String email;
 
-    /**
-     * incluir tempo dedicado para alem do incluido anteriormente
-     *
-     * @param tempo  dedicado pelo empregado para esta tarefa
-     * @param tarefa em execucao pelo empregado
-     */
-    protected void incluirTempoDedicado(Tarefa tarefa, int tempo) {
-        // se o empregado que esta a trabalhar na tarefa for o que esta a tentar incluir
-        if (tarefa.getEmpregado().equals(this)) {
-            // ir à tarefa buscar a tarefa atual e buscar o tempo ja colocado
-            if (tempo <= 0) return;
-            tarefa.setTempoDedicadoEmTarefaAtual(tempo);
-        }
-    }
+
 
 
     public void adicionarTarefa(Tarefa tarefa) {
@@ -45,9 +32,7 @@ public class Empregado extends Utilizador {
             tarefas.add(tarefa);
             tarefa.setEmpregado(this);
             //cria tarefa atual
-            tarefa.atribuirEmpregadoaTarefa(this);
+            tarefa.setLocalDates();
         }
     }
-
-
 }
