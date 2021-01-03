@@ -70,7 +70,6 @@ class ProjetoControllerTest {
 
     @Test
     void adicionaTarefaAProjeto() throws Exception {
-        // TODO not working
         Projeto projeto = new Projeto();
         projeto.setId(1L);
         Cliente cliente = new Cliente();
