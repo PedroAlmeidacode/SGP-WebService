@@ -26,13 +26,16 @@ public class TarefaAtual {
      * @param percentualConclusao percentagem de cocnlusao definida pelo gestor
      *                            deste projeto
      */
-    public void setPercentualConclusao(float percentualConclusao) {
-        if(percentualConclusao >= 0 && percentualConclusao <= 100 ) {
+    public boolean setPercentualConclusao(float percentualConclusao) {
+
+        if(percentualConclusao>0 && percentualConclusao<=100) {
             this.percentualConclusao = percentualConclusao;
             // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
             // passa a ser a data atual
             setUltimaAtualizacaoParaAgora();
+            return true;
         }
+        return false;
     }
 
 

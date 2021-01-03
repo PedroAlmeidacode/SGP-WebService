@@ -7,9 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import pt.ufp.info.esof.sgp.dtos.objectWithID.AdicionarTarefaAProjetoDTO;
 import pt.ufp.info.esof.sgp.models.Cliente;
 import pt.ufp.info.esof.sgp.models.Projeto;
+import pt.ufp.info.esof.sgp.models.Tarefa;
 import pt.ufp.info.esof.sgp.services.ProjetoService;
 
 import java.util.Optional;
@@ -73,15 +73,24 @@ class ProjetoControllerTest {
         // TODO not working
         Projeto projeto = new Projeto();
         projeto.setId(1L);
+        Cliente cliente = new Cliente();
+        cliente.setEmail("plsalmeida18@gmailcom");
+        projeto.setCliente(cliente);
         projeto.setNome("projeto1");
-        AdicionarTarefaAProjetoDTO adicionarTarefaAProjetoDTO = new AdicionarTarefaAProjetoDTO();
-        adicionarTarefaAProjetoDTO.setIdTarefa(1L);
 
-        String tarefaAsJsonString=new ObjectMapper().writeValueAsString(adicionarTarefaAProjetoDTO);
+        Tarefa tarefa = new Tarefa();
+        tarefa.setTitulo("Tarefa teste titulo");
+        tarefa.setId(4L);
 
-        when(projetoService.adicionarTarefa(1L,adicionarTarefaAProjetoDTO.converter())).thenReturn(Optional.of(projeto));
 
-        mockMvc.perform(patch("/projeto/tarefa/1").content(tarefaAsJsonString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        when(projetoService.adicionarTarefa(1L,4L)).thenReturn(Optional.of(projeto));
+
+        mockMvc.perform(patch("/projeto/1/tarefa/4")).andExpect(status().isOk());
+
+        // tentar adicionar uma aterfa que ja existe
+        when(projetoService.adicionarTarefa(1L,4L)).thenReturn(Optional.empty());
+        mockMvc.perform(patch("/projeto/1/tarefa/4")).andExpect(status().isBadRequest());
+
 
     }
 
