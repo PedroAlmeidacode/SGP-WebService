@@ -67,7 +67,7 @@ public class ProjetoServiceImpl implements ProjetoService {
                     } else return Optional.empty(); // quantidade de tarefas nao aumentou
                 }
             }
-            // nao adicionou a tarefa a projeto
+            // tarefa nao exite
             return Optional.empty();
         }
         // projeto nao existe
