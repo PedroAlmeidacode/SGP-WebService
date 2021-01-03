@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
@@ -13,14 +14,14 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Tarefa {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int duracaoEstimada; // minutos estimados, tem que ser expressa em minutos
     // inicializada ao atribuir um empregado a tarefa
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm",shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataIniciacao;
     private String titulo;
     private String descricao;
@@ -129,13 +130,15 @@ public class Tarefa {
 
     // nao testamos se a tarefa atual existe pois por esta altura o empregado ja foi adicionado a tarefa
     // logo a tarefa atual ja foi criada
-    public void setTempoDedicadoEmTarefaAtual(int tempo) {
+    public boolean setTempoDedicadoEmTarefaAtual(int tempo) {
         if(tempo > 0 ){
             int tempoAtual = this.getTarefaAtual().getTempoDedicado();
             // adicionar mais o tempo
             this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+            return true;
 
         }
+        return false;
     }
 
 
