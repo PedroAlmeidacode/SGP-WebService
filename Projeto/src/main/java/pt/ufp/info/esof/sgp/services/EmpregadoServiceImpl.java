@@ -27,11 +27,4 @@ public class EmpregadoServiceImpl implements EmpregadoService {
         return Optional.empty();
     }
 
-
-    @Override
-    public List<Empregado> findAll() {
-        List<Empregado> empregados = new ArrayList<>();
-        empregadoRepository.findAll().forEach(empregados::add);
-        return empregados;
-    }
 }

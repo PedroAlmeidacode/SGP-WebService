@@ -47,14 +47,14 @@ public class ProjetoServiceImpl implements ProjetoService {
 
 
     @Override
-    public Optional<Projeto> adicionarTarefa(Long idProjeto, Tarefa tarefa) {
+    public Optional<Projeto> adicionarTarefa(Long idProjeto, Long idTarefa) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
 
         if (optionalProjeto.isPresent()) {
             Projeto projeto = optionalProjeto.get();
             int quantidadeDTarefasAntes = projeto.getTarefas().size();
 
-            Optional<Tarefa> optionalTarefa = tarefaRepository.findById(tarefa.getId());
+            Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
             if (optionalTarefa.isPresent()) {
                 Tarefa t = optionalTarefa.get();
                 // se a tarefa ja nao tem um projeto associado
@@ -67,7 +67,7 @@ public class ProjetoServiceImpl implements ProjetoService {
                     } else return Optional.empty(); // quantidade de tarefas nao aumentou
                 }
             }
-            // nao adicionou a tarefa a projeto
+            // tarefa nao exite
             return Optional.empty();
         }
         // projeto nao existe
