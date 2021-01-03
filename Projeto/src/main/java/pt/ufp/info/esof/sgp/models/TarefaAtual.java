@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 public class TarefaAtual {
 
     @Id
@@ -42,4 +44,5 @@ public class TarefaAtual {
     public void setUltimaAtualizacaoParaAgora() {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
+
 }

@@ -16,6 +16,7 @@ class EmpregadoTest {
         Empregado empregado = new Empregado();
         Tarefa tarefa = new Tarefa();
 
+
         // no caso normal
         empregado.adicionarTarefa(tarefa);
         assertEquals(empregado.getTarefas().size(),1);

@@ -18,7 +18,6 @@ public class Empregado extends Utilizador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @OneToMany(mappedBy = "empregado")
     private List<Tarefa> tarefas = new ArrayList<>();
     private Cargo cargo;
