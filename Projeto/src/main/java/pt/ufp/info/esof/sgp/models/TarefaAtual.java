@@ -28,7 +28,7 @@ public class TarefaAtual {
      */
     public boolean setPercentualConclusao(float percentualConclusao) {
 
-        if(percentualConclusao>0 && percentualConclusao<=100) {
+        if(percentualConclusao>=0 && percentualConclusao<=100) {
             this.percentualConclusao = percentualConclusao;
             // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
             // passa a ser a data atual

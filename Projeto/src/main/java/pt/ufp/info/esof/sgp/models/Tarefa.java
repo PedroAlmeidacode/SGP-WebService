@@ -131,7 +131,7 @@ public class Tarefa {
     // nao testamos se a tarefa atual existe pois por esta altura o empregado ja foi adicionado a tarefa
     // logo a tarefa atual ja foi criada
     public boolean setTempoDedicadoEmTarefaAtual(int tempo) {
-        if(tempo > 0 ){
+        if(tempo >= 0 ){
             int tempoAtual = this.getTarefaAtual().getTempoDedicado();
             // adicionar mais o tempo
             this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
