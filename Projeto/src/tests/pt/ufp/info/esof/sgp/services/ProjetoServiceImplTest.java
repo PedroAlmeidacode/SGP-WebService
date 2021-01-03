@@ -107,14 +107,31 @@ class ProjetoServiceImplTest {
 
     @Test
     void getEstadoProjeto(){
-        // TODO fazer
+        Projeto projeto = new Projeto();
+        projeto.setId(1L);
 
+        // projeto nao existe
+        assertTrue(projetoService.getEstadoProjeto(1L).isEmpty());
+
+
+        // caso normal
+        when(projetoRepository.findById(1L)).thenReturn(Optional.of(projeto));
+        assertTrue(projetoService.getEstadoProjeto(1L).isPresent());
 
     }
 
     @Test
     void getCustoProjeto(){
-        // TODO fazer
+        Projeto projeto = new Projeto();
+        projeto.setId(1L);
+
+        // projeto nao existe
+        assertTrue(projetoService.getCustoProjeto(1L).isEmpty());
+
+
+        // caso normal
+        when(projetoRepository.findById(1L)).thenReturn(Optional.of(projeto));
+        assertTrue(projetoService.getCustoProjeto(1L).isPresent());
 
 
     }
@@ -123,8 +140,15 @@ class ProjetoServiceImplTest {
     @Test
     void getDuracaoProjeto(){
         // TODO fazer
+        Projeto projeto = new Projeto();
+        projeto.setId(1L);
 
+        // projeto nao existe
+        assertTrue(projetoService.getDuracaoProjeto(1L).isEmpty());
 
+        // caso normal
+        when(projetoRepository.findById(1L)).thenReturn(Optional.of(projeto));
+        assertTrue(projetoService.getDuracaoProjeto(1L).isPresent());
     }
 
 }
