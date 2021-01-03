@@ -45,12 +45,4 @@ public class TarefaAtual {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
-    public boolean adicionarTempoDedicado(int tempoDedicado) {
-        if(tempoDedicado>0)
-        {
-            this.tempoDedicado += tempoDedicado;
-            return true;
-        }
-        return false;
-    }
 }

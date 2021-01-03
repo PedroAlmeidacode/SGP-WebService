@@ -13,13 +13,13 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Projeto {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @EqualsAndHashCode.Include
     private String nome;
     @ManyToOne
     private Cliente cliente;
@@ -91,5 +91,4 @@ public class Projeto {
 
         }
     }
-
 }

@@ -1,14 +1,11 @@
 package pt.ufp.info.esof.sgp.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.Lazy;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 import javax.persistence.*;
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 // TODO atualizar UML
@@ -44,7 +41,7 @@ public class Tarefa {
      */
     protected double getCustoTarefa() {
         // se nao tiver empregado atribuido a tarefa
-        if (this.empregado.getCargo() == null) return 0;
+        if (this.empregado == null || this.empregado.getCargo() == null) return 0;
         switch (this.empregado.getCargo()) {
             // analista junior ganha 20 euros a hora = 20/60 = 0.3(3)euros ao minuto
             case ANALISTA_JUNIOR:
@@ -58,26 +55,25 @@ public class Tarefa {
             // analista senior ganha 80 euros a hora = 80/60 = 1.3(3)euros ao minuto
             case ANLISTA_SENIOR:
                 return this.duracaoEstimada * (80.00 / 60);
-            // caso nao haja cargo atribuido a este empregado
-            default:
-                return 0;
+
         }
+        return 0;
     }
 
 
     /**
      * atribui tambem a data atual a tarefa como data de inciacao
-     * atribui esta tarefa na lista de tarefas de empregado
      *
-     * @param empregado atrbuido a esta tarefa
+     *
+     *  Este metodo e chamado pelo metodo em empregado e nao deve ser chamado isolado
      */
-    public void atribuirEmpregadoaTarefa(Empregado empregado) {
+    public void setLocalDates() {
         // inciacada a data de inciciacao da tarefa
         this.dataIniciacao = LocalDateTime.now();
         // criada a tarefa atual
         this.tarefaAtual = new TarefaAtual();
         // colocar a ultima atualizacao como a data presente
-        this.tarefaAtual.setUltimaAtualizacao(LocalDateTime.now());
+        this.tarefaAtual.setUltimaAtualizacaoParaAgora();
     }
 
 
@@ -131,10 +127,18 @@ public class Tarefa {
     }
 
 
-    public void setTempoDedicadoEmTarefaAtual(int tempo) {
-        int tempoAtual = this.getTarefaAtual().getTempoDedicado();
-        // adicionar mais o tempo
-        this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+
+    // nao testamos se a tarefa atual existe pois por esta altura o empregado ja foi adicionado a tarefa
+    // logo a tarefa atual ja foi criada
+    public boolean setTempoDedicadoEmTarefaAtual(int tempo) {
+        if(tempo > 0 ){
+            int tempoAtual = this.getTarefaAtual().getTempoDedicado();
+            // adicionar mais o tempo
+            this.getTarefaAtual().setTempoDedicado(tempoAtual + tempo);
+            return true;
+
+        }
+        return false;
     }
 
 
