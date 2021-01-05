@@ -1,0 +1,3 @@
+    2021-01-04 21:14:42.498  INFO 32207 --- [restartedMain] pt.ufp.info.esof.sgp.SgpApplication      : Starting SgpApplication on pedro with PID 32207 (/home/pedro/Desktop/SGP-WebService/Projeto/target/classes started by pedro in /home/pedro/Desktop/SGP-WebService/Projeto)
+2021-01-04 21:14:42.500  INFO 32207 --- [restartedMain] pt.ufp.info.esof.sgp.SgpApplication      : No active profile set, falling back to default profiles: default
+2021-01-04 21:14:44.115  INFO 32207 --- [restartedMain] pt.ufp.info.esof.sgp.SgpApplication      : Started SgpApplication in 1.796 seconds (JVM running for 2.173)
