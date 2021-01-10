@@ -14,7 +14,7 @@ import pt.ufp.info.esof.sgp.services.ProjetoService;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,9 +27,6 @@ class ProjetoControllerTest {
 
     @MockBean
     private ProjetoService projetoService;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void createProjeto() throws Exception {
@@ -103,6 +100,7 @@ class ProjetoControllerTest {
         String httpResponseAsString=mockMvc.perform(get("/projeto/1/estadoDescritivo")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
         // teste: reposta nao e nula
         assertNotNull(httpResponseAsString);
+
 
         // projeto com id 2 nao foi inicializado em inicializacao logo obtera not found do controller
         mockMvc.perform(get("/projeto/2/estadoDescritivo")).andExpect(status().isNotFound());

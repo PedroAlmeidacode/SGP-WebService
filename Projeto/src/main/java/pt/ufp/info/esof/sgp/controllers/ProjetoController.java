@@ -4,8 +4,6 @@ package pt.ufp.info.esof.sgp.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pt.ufp.info.esof.sgp.dtos.conversores.ConverterProjetoParaDTO;
-import pt.ufp.info.esof.sgp.dtos.conversores.ConverterProjetoParaEstadoDescritivoDTO;
 import pt.ufp.info.esof.sgp.dtos.conversores.*;
 import pt.ufp.info.esof.sgp.dtos.creators.ProjetoCreateDTO;
 import pt.ufp.info.esof.sgp.dtos.responses.*;
@@ -14,7 +12,6 @@ import pt.ufp.info.esof.sgp.models.enums.Estado;
 import pt.ufp.info.esof.sgp.services.ProjetoService;
 
 import java.util.Optional;
-
 
 @Controller
 @RequestMapping("/projeto")

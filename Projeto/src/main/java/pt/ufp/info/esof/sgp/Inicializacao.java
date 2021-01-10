@@ -4,9 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import pt.ufp.info.esof.sgp.models.*;
+import pt.ufp.info.esof.sgp.models.Cliente;
+import pt.ufp.info.esof.sgp.models.Empregado;
+import pt.ufp.info.esof.sgp.models.Projeto;
+import pt.ufp.info.esof.sgp.models.Tarefa;
 import pt.ufp.info.esof.sgp.models.enums.Cargo;
-import pt.ufp.info.esof.sgp.repositories.*;
+import pt.ufp.info.esof.sgp.repositories.ClienteRepository;
+import pt.ufp.info.esof.sgp.repositories.EmpregadoRepository;
+import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
 
 @Component
 public class Inicializacao implements ApplicationListener<ContextRefreshedEvent> {
@@ -15,10 +20,6 @@ public class Inicializacao implements ApplicationListener<ContextRefreshedEvent>
     private ClienteRepository clienteRepository;
     @Autowired
     private EmpregadoRepository empregadoRepository;
-    @Autowired
-    private ProjetoRepository projetoRepository;
-    @Autowired
-    private TarefaAtualRepository tarefaAtualRepository;
     @Autowired
     private TarefaRepository tarefaRepository;
 
