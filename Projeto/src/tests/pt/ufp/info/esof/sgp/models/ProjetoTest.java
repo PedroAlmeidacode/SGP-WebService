@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import pt.ufp.info.esof.sgp.models.enums.Cargo;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class ProjetoTest {
 

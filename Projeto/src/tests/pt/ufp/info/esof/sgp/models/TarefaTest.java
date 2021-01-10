@@ -6,7 +6,9 @@ import pt.ufp.info.esof.sgp.models.enums.Estado;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 class TarefaTest {
 

@@ -9,7 +9,9 @@ import pt.ufp.info.esof.sgp.models.enums.Cargo;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 
 @DataJpaTest
 class EmpregadoRepositoryTest {

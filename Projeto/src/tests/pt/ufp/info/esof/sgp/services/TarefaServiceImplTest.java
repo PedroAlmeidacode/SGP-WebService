@@ -12,7 +12,7 @@ import pt.ufp.info.esof.sgp.repositories.TarefaRepository;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = TarefaServiceImpl.class)
