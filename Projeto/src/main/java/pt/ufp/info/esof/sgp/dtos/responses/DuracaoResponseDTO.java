@@ -1,4 +1,4 @@
-package pt.ufp.info.esof.sgp.dtos;
+package pt.ufp.info.esof.sgp.dtos.responses;
 
 import lombok.Data;
 

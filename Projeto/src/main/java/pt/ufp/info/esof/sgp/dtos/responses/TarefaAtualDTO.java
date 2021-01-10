@@ -1,4 +1,4 @@
-package pt.ufp.info.esof.sgp.dtos;
+package pt.ufp.info.esof.sgp.dtos.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

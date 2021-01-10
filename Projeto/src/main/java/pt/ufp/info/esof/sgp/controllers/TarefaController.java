@@ -3,8 +3,9 @@ package pt.ufp.info.esof.sgp.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pt.ufp.info.esof.sgp.dtos.*;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterTarefaParaDTO;
+import pt.ufp.info.esof.sgp.dtos.creators.TarefaCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.TarefaResponseDTO;
 import pt.ufp.info.esof.sgp.models.Tarefa;
 import pt.ufp.info.esof.sgp.services.TarefaService;
 
@@ -28,24 +29,23 @@ public class TarefaController {
     }
 
     //PATCH /tarefa/empregado/{idTarefa}
-    @PatchMapping("/empregado/{idTarefa}")
-    public ResponseEntity<TarefaResponseDTO> adicionaEmpregadoATarefa(@PathVariable Long idTarefa, @RequestBody AdicionarEmpregadoATarefaDTO empregado) {
-        Optional<Tarefa> optionalTarefa = tarefaService.adicionarEmpregado(idTarefa, empregado.converter());
-        return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.badRequest().build());
+    @PatchMapping("/{idTarefa}/empregado/{idEmpregado}")
+    public ResponseEntity<TarefaResponseDTO> adicionaEmpregadoATarefa(@PathVariable Long idTarefa, @PathVariable Long idEmpregado) {
+        Optional<Tarefa> optionalTarefa = tarefaService.adicionarEmpregado(idTarefa, idEmpregado);
+        return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
-    @PatchMapping("/{idTarefa}/percentualConclusao")
-    public ResponseEntity<TarefaResponseDTO> adicionaPercentualTarefa(@PathVariable Long idTarefa, @RequestBody PercentualTarefaDTO percentual) {
-        Optional<Tarefa> optionalTarefa = tarefaService.adicionarPercentualTarefa(idTarefa, percentual.converter());
+    @PatchMapping("/{idTarefa}/percentual/{percentualConclusao}")
+    public ResponseEntity<TarefaResponseDTO> adicionaPercentualTarefa(@PathVariable Long idTarefa, @PathVariable float percentualConclusao) {
+        Optional<Tarefa> optionalTarefa = tarefaService.adicionarPercentualTarefa(idTarefa, percentualConclusao);
         return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @PatchMapping("/{idTarefa}/tempoDedicado")
-    public ResponseEntity<TarefaResponseDTO> adicionaTempoDedicadoTarefa(@PathVariable Long idTarefa, @RequestBody TempoDedicadoTarefaDTO tempoDedicado) {
-        Optional<Tarefa> optionalTarefa = tarefaService.adicionarTempoDedicadoTarefa(idTarefa, tempoDedicado.converter());
+    @PatchMapping("/{idTarefa}/tempoDedicado/{tempoDedicado}")//TODO adicionar path com tempo dedicado
+    public ResponseEntity<TarefaResponseDTO> adicionaTempoDedicadoTarefa(@PathVariable Long idTarefa, @PathVariable int tempoDedicado) {
+        Optional<Tarefa> optionalTarefa = tarefaService.adicionarTempoDedicadoTarefa(idTarefa, tempoDedicado);
         return optionalTarefa.map(tarefa -> ResponseEntity.ok(converterTarefaParaDTO.converter(tarefa))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
 }
-

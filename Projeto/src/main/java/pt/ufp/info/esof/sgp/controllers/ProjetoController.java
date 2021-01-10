@@ -4,10 +4,11 @@ package pt.ufp.info.esof.sgp.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pt.ufp.info.esof.sgp.dtos.*;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterProjetoParaDTO;
 import pt.ufp.info.esof.sgp.dtos.conversores.ConverterProjetoParaEstadoDescritivoDTO;
 import pt.ufp.info.esof.sgp.dtos.conversores.*;
+import pt.ufp.info.esof.sgp.dtos.creators.ProjetoCreateDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.*;
 import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.enums.Estado;
 import pt.ufp.info.esof.sgp.services.ProjetoService;
@@ -38,9 +39,9 @@ public class ProjetoController {
 
 
     // PATCH /projeto/tarefa/{idProjeto}
-    @PatchMapping("/tarefa/{idProjeto}")
-    public ResponseEntity<ProjetoResponseDTO> adicionaTarefaAProjeto(@PathVariable Long idProjeto, @RequestBody AdicionarTarefaAProjetoDTO tarefa) {
-        Optional<Projeto> optionalProjeto = projetoService.adicionarTarefa(idProjeto, tarefa.converter());
+    @PatchMapping("/{idProjeto}/tarefa/{idTarefa}")
+    public ResponseEntity<ProjetoResponseDTO> adicionaTarefaAProjeto(@PathVariable Long idProjeto, @PathVariable Long idTarefa) {
+        Optional<Projeto> optionalProjeto = projetoService.adicionarTarefa(idProjeto, idTarefa);
         return optionalProjeto.map(projeto -> ResponseEntity.ok(converterProjetoParaDTO.converter(projeto))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
@@ -68,7 +69,7 @@ public class ProjetoController {
 
 
     //GET /projeto/{idProjeto}/valor
-    @GetMapping("/{idProjeto}/valor")
+    @GetMapping("/{idProjeto}/custo")
     public ResponseEntity<CustoResponseDTO> getCustoProjeto(@PathVariable Long idProjeto) {
         Optional<Double> optionalCusto = projetoService.getCustoProjeto(idProjeto);
         return optionalCusto.map(custo -> {

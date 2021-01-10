@@ -1,6 +1,6 @@
 package pt.ufp.info.esof.sgp.dtos.conversores;
 
-import pt.ufp.info.esof.sgp.dtos.CustoResponseDTO;
+import pt.ufp.info.esof.sgp.dtos.responses.CustoResponseDTO;
 
 import java.text.DecimalFormat;
 

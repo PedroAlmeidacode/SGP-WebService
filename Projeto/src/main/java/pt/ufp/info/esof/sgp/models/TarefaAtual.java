@@ -1,5 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 public class TarefaAtual {
 
     @Id
@@ -26,11 +28,16 @@ public class TarefaAtual {
      * @param percentualConclusao percentagem de cocnlusao definida pelo gestor
      *                            deste projeto
      */
-    public void setPercentualConclusao(float percentualConclusao) {
-        this.percentualConclusao = percentualConclusao;
-        // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
-        // passa a ser a data atual
-        setUltimaAtualizacaoParaAgora();
+    public boolean setPercentualConclusao(float percentualConclusao) {
+
+        if(percentualConclusao>=0 && percentualConclusao<=100) {
+            this.percentualConclusao = percentualConclusao;
+            // quando o gestor atualiza o percentual de conclusao a ultima atualizacao
+            // passa a ser a data atual
+            setUltimaAtualizacaoParaAgora();
+            return true;
+        }
+        return false;
     }
 
 
@@ -38,7 +45,4 @@ public class TarefaAtual {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
-    public void adicionarTempoDedicado(int tempoDedicado) {
-        this.tempoDedicado += tempoDedicado;
-    }
 }

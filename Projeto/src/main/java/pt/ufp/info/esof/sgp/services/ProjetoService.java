@@ -14,9 +14,8 @@ public interface ProjetoService {
 
     Optional<Projeto> createProjeto(Projeto converter);
 
-    Optional<Projeto> adicionarTarefa(Long idProjeto, Tarefa converter);
-
-
+    Optional<Projeto> adicionarTarefa(Long idProjeto, Long idTarefa);
+    
     Optional<Estado> getEstadoProjeto(Long idProjeto);
 
     Optional<Double> getCustoProjeto(Long idProjeto);
