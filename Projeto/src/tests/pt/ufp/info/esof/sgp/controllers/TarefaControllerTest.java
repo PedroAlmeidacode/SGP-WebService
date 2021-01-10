@@ -7,17 +7,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import pt.ufp.info.esof.sgp.dtos.creators.EmpregadoCreateDTO;
 import pt.ufp.info.esof.sgp.models.Empregado;
-import pt.ufp.info.esof.sgp.models.Projeto;
 import pt.ufp.info.esof.sgp.models.Tarefa;
-import pt.ufp.info.esof.sgp.models.enums.Cargo;
 import pt.ufp.info.esof.sgp.services.TarefaService;
-
-import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

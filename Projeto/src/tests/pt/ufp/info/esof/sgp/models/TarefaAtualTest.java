@@ -1,10 +1,8 @@
 package pt.ufp.info.esof.sgp.models;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Null;
 
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 

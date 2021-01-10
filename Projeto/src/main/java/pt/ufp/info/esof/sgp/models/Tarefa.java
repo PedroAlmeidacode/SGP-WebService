@@ -8,8 +8,6 @@ import pt.ufp.info.esof.sgp.models.enums.Estado;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-// TODO atualizar UML
-// TODO atualizar SRS
 
 @Entity
 @Getter

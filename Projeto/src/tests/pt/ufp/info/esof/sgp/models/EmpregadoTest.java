@@ -1,11 +1,6 @@
 package pt.ufp.info.esof.sgp.models;
 
 import org.junit.jupiter.api.Test;
-import pt.ufp.info.esof.sgp.models.enums.Cargo;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
