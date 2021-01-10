@@ -25,7 +25,7 @@ class EmpregadoRepositoryTest {
         Empregado empregado = new Empregado();
         empregado.setNome("Ruben El'Jorge");
         empregado.setCargo(Cargo.ANALISTA_JUNIOR);
-
+        empregado.setEmail("rubenJOJO@gmail.com");
 
         Tarefa tarefa = new Tarefa();
         Tarefa tarefa1 = new Tarefa();
@@ -34,15 +34,16 @@ class EmpregadoRepositoryTest {
         empregado.adicionarTarefa(tarefa);
         empregado.adicionarTarefa(tarefa1);
 
+        assertNull(empregado.getId());
         empregadoRepository.save(empregado);
-
+        assertNull(tarefa.getId());
+        assertNull(tarefa1.getId());
         tarefaRepository.save(tarefa);
         tarefaRepository.save(tarefa1);
 
+
         assertEquals(2,tarefaRepository.count());
         assertEquals(1,empregadoRepository.count());
-
-
 
     }
 }

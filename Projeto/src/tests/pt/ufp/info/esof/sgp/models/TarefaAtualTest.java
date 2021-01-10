@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Null;
 
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,9 +41,10 @@ class TarefaAtualTest {
 
         LocalDateTime date = LocalDateTime.now();
         tarefa1.getTarefaAtual().setUltimaAtualizacao(date);
+        assertEquals(tarefa1.getTarefaAtual().getUltimaAtualizacao(),date);
 
         tarefa1.getTarefaAtual().setUltimaAtualizacaoParaAgora();
-        assertNotEquals(tarefa1.getTarefaAtual().getUltimaAtualizacao(),date);
+        assertNotEquals(tarefa1.getTarefaAtual().getUltimaAtualizacao().plusMinutes(2),date);
 
 
     }

@@ -44,8 +44,6 @@ public class ProjetoServiceImpl implements ProjetoService {
         return Optional.empty();
     }
 
-
-
     @Override
     public Optional<Projeto> adicionarTarefa(Long idProjeto, Long idTarefa) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(idProjeto);
