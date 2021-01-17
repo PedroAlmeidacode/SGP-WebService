@@ -56,7 +56,7 @@ public class ProjetoServiceImpl implements ProjetoService {
             if (optionalTarefa.isPresent()) {
                 Tarefa t = optionalTarefa.get();
                 // se a tarefa ja nao tem um projeto associado
-                if (t.getProjeto() == null) {
+                if (t.getProjeto() == null && !(projeto.getTarefas().contains(t)) ) {
                     // associacao entre os dois em models
                     projeto.adicionarTarefa(t);
                     int quantidadedeTarefasDepois = projeto.getTarefas().size();

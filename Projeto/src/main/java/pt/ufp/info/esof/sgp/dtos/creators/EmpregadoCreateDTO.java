@@ -1,10 +1,16 @@
 package pt.ufp.info.esof.sgp.dtos.creators;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pt.ufp.info.esof.sgp.models.Empregado;
 import pt.ufp.info.esof.sgp.models.enums.Cargo;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmpregadoCreateDTO implements CreateDTO<Empregado> {
 
     private String nome;
