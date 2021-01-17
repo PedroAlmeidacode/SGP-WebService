@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pt.ufp.info.esof.sgp.dtos.DTOStaticFactory;
 import pt.ufp.info.esof.sgp.dtos.creators.EmpregadoCreateDTO;
-import pt.ufp.info.esof.sgp.dtos.conversores.ConverterEmpregadoParaDTO;
 import pt.ufp.info.esof.sgp.models.Empregado;
 import pt.ufp.info.esof.sgp.services.EmpregadoService;
 
@@ -17,19 +17,16 @@ import java.util.Optional;
 public class EmpregadoController {
 
     private final EmpregadoService empregadoService;
-    private final ConverterEmpregadoParaDTO converterEmpregadoParaDTO = new ConverterEmpregadoParaDTO();
-
+    private final DTOStaticFactory dtoStaticFactory = DTOStaticFactory.getInstance();
 
     public EmpregadoController(EmpregadoService empregadoService) {
         this.empregadoService = empregadoService;
     }
 
-
-
     @PostMapping
     public ResponseEntity<EmpregadoCreateDTO> createEmpregado(@RequestBody EmpregadoCreateDTO empregado) {
         Optional<Empregado> optionalEmpregado = empregadoService.createEmpregado(empregado.converter());
-        return optionalEmpregado.map(value -> ResponseEntity.ok(converterEmpregadoParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
+        return optionalEmpregado.map(value -> ResponseEntity.ok(dtoStaticFactory.empregadoCreateDTO(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
 

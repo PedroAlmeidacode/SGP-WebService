@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f442ea5-cb5d-421b-8ec7-49d0b82dc719" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Proposta_de_Trabalho_Engenharia_de_Software_2020_2021.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Proposta_de_Trabalho_Engenharia_de_Software_2020_2021.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SRS.docx" beforeDir="false" afterPath="$PROJECT_DIR$/SRS.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +24,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Projeto" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="8f442ea5-cb5d-421b-8ec7-49d0b82dc719" name="Default Changelist" comment="" />
@@ -35,10 +40,21 @@
       <workItem from="1607362043114" duration="12000" />
       <workItem from="1607362062690" duration="9000" />
       <workItem from="1607973761737" duration="12000" />
+      <workItem from="1610814424070" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1610814449605">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610814449605" />
+    <state x="614" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1610814425541">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="614" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610814425541" />
   </component>
 </project>

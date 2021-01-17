@@ -4,7 +4,7 @@ package pt.ufp.info.esof.sgp.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pt.ufp.info.esof.sgp.dtos.conversores.*;
+import pt.ufp.info.esof.sgp.dtos.DTOStaticFactory;
 import pt.ufp.info.esof.sgp.dtos.creators.ProjetoCreateDTO;
 import pt.ufp.info.esof.sgp.dtos.responses.*;
 import pt.ufp.info.esof.sgp.models.Projeto;
@@ -18,11 +18,7 @@ import java.util.Optional;
 public class ProjetoController {
 
     private final ProjetoService projetoService;
-    private final ConverterProjetoParaDTO converterProjetoParaDTO = new ConverterProjetoParaDTO();
-    private final ConverterProjetoParaEstadoDescritivoDTO converterProjetoParaEDTO = new ConverterProjetoParaEstadoDescritivoDTO();
-    private final ConverterEstadoParaDTO converterEstadoParaDTO = new ConverterEstadoParaDTO();
-    private final ConverterCustoParaDTO converterCustoParaDTO = new ConverterCustoParaDTO();
-    private final ConverterDuracaoParaDTO converterDuracaoParaDTO = new ConverterDuracaoParaDTO();
+    private final DTOStaticFactory dtoStaticFactory = DTOStaticFactory.getInstance();
 
     public ProjetoController(ProjetoService projetoService) {
         this.projetoService = projetoService;
@@ -31,7 +27,7 @@ public class ProjetoController {
     @PostMapping
     public ResponseEntity<ProjetoResponseDTO> createProjeto(@RequestBody ProjetoCreateDTO projeto) {
         Optional<Projeto> optionalExplicador = projetoService.createProjeto(projeto.converter());
-        return optionalExplicador.map(value -> ResponseEntity.ok(converterProjetoParaDTO.converter(value))).orElseGet(() -> ResponseEntity.badRequest().build());
+        return optionalExplicador.map(value -> ResponseEntity.ok(dtoStaticFactory.projetoResponseDTO(value))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
 
@@ -39,7 +35,7 @@ public class ProjetoController {
     @PatchMapping("/{idProjeto}/tarefa/{idTarefa}")
     public ResponseEntity<ProjetoResponseDTO> adicionaTarefaAProjeto(@PathVariable Long idProjeto, @PathVariable Long idTarefa) {
         Optional<Projeto> optionalProjeto = projetoService.adicionarTarefa(idProjeto, idTarefa);
-        return optionalProjeto.map(projeto -> ResponseEntity.ok(converterProjetoParaDTO.converter(projeto))).orElseGet(() -> ResponseEntity.badRequest().build());
+        return optionalProjeto.map(projeto -> ResponseEntity.ok(dtoStaticFactory.projetoResponseDTO(projeto))).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
 
@@ -47,10 +43,7 @@ public class ProjetoController {
     @GetMapping("/{idProjeto}/estadoDescritivo")
     public ResponseEntity<EstadoDescritivoProjetoDTO> getEstadoDescritivoProjeto(@PathVariable Long idProjeto) {
         Optional<Projeto> optionalProjeto = projetoService.findById(idProjeto);
-        return optionalProjeto.map(projeto -> {
-            EstadoDescritivoProjetoDTO responseDTO = converterProjetoParaEDTO.converter(projeto);
-            return ResponseEntity.ok(responseDTO);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+        return optionalProjeto.map(projeto -> ResponseEntity.ok(dtoStaticFactory.estadoDescritivoProjetoDTO(projeto))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
@@ -58,10 +51,7 @@ public class ProjetoController {
     @GetMapping("/{idProjeto}/estado")
     public ResponseEntity<EstadoResponseDTO> getEstadoProjeto(@PathVariable Long idProjeto) {
         Optional<Estado> optionalEstado = projetoService.getEstadoProjeto(idProjeto);
-        return optionalEstado.map(estado -> {
-            EstadoResponseDTO responseDTO = converterEstadoParaDTO.converter(estado);
-            return ResponseEntity.ok(responseDTO);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+        return optionalEstado.map(estado ->ResponseEntity.ok(dtoStaticFactory.estadoResponseDTO(estado))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
@@ -69,10 +59,7 @@ public class ProjetoController {
     @GetMapping("/{idProjeto}/custo")
     public ResponseEntity<CustoResponseDTO> getCustoProjeto(@PathVariable Long idProjeto) {
         Optional<Double> optionalCusto = projetoService.getCustoProjeto(idProjeto);
-        return optionalCusto.map(custo -> {
-            CustoResponseDTO responseDTO = converterCustoParaDTO.converter(custo);
-            return ResponseEntity.ok(responseDTO);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+        return optionalCusto.map(custo -> ResponseEntity.ok(dtoStaticFactory.custoResponseDTO(custo))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
@@ -80,9 +67,6 @@ public class ProjetoController {
     @GetMapping("/{idProjeto}/duracao")
     public ResponseEntity<DuracaoResponseDTO> getDuracaoProjeto(@PathVariable Long idProjeto) {
         Optional<Integer> optionalDuracao = projetoService.getDuracaoProjeto(idProjeto);
-        return optionalDuracao.map(duracao -> {
-            DuracaoResponseDTO responseDTO = converterDuracaoParaDTO.converter(duracao);
-            return ResponseEntity.ok(responseDTO);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+        return optionalDuracao.map(duracao -> ResponseEntity.ok(dtoStaticFactory.duracaoResponseDTO(duracao))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
