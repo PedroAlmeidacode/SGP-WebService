@@ -21,7 +21,6 @@ public class DTOStaticFactory {
     }
 
     //contrutor que apenas constroi uma unica vez
-
     public static DTOStaticFactory getInstance() {
         if (dtoStaticFactory == null) //caso se encontre null, instancia o objeto uma vez e envia o mesmo
             dtoStaticFactory = new DTOStaticFactory();
@@ -81,6 +80,16 @@ public class DTOStaticFactory {
     public EstadoTarefaDTO estadoTarefaDTO (Tarefa tarefa)
     {
         int duracao=tarefa.getDuracaoEstimada();
+        if(tarefa.getTarefaAtual()==null)
+        {
+            return EstadoTarefaDTO.builder()
+                    .duracaoEstimada(duracao/24/60 + " dias, " + duracao/60%24 + " horas, " + duracao%60 + " minutos")
+                    .dataIniciacao(tarefa.getDataIniciacao())
+                    .titulo(tarefa.getTitulo())
+                    .estadoTarefa(tarefa.getEstadoTarefa())
+                    .build();
+
+        }
         return EstadoTarefaDTO.builder()
                 .nomeEmpregado(tarefa.getEmpregado().getNome())
                 .duracaoEstimada(duracao/24/60 + " dias, " + duracao/60%24 + " horas, " + duracao%60 + " minutos")

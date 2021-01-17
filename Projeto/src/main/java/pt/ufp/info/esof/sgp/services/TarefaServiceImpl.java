@@ -69,10 +69,10 @@ public class TarefaServiceImpl implements TarefaService {
         Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
         if (optionalTarefa.isPresent())  //caso a taref exista na BD
         {
-            Tarefa tarefa = optionalTarefa.get();               //vai buscar a tarefa ao optional
-            TarefaAtual tarefaAtual = tarefa.getTarefaAtual();   //vai buscar a atual da tarefa
-
-            if(tarefaAtual.setPercentualConclusao(percentual))     //modifica o percentual
+            Tarefa tarefa = optionalTarefa.get();               //vai buscar a tarefa ao option
+            if(tarefa.getTarefaAtual() ==null)
+                return Optional.empty();
+            if(tarefa.getTarefaAtual().setPercentualConclusao(percentual))     //modifica o percentual
                 return Optional.of(tarefaRepository.save(tarefa));  //dá save á tarefa
             return Optional.empty();
         }
@@ -85,6 +85,8 @@ public class TarefaServiceImpl implements TarefaService {
         Optional<Tarefa> optionalTarefa = tarefaRepository.findById(idTarefa);
         if (optionalTarefa.isPresent()) {
             Tarefa tarefa = optionalTarefa.get();
+            if(tarefa.getTarefaAtual()==null)
+                return Optional.empty();
             // caso return false quer dizer que o tempodedicado seja negativo
             if(tarefa.setTempoDedicadoEmTarefaAtual(tempoDedicado))
                 return Optional.of(tarefaRepository.save(tarefa));
